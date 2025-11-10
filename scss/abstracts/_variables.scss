@@ -1,19 +1,25 @@
 // write variables here
 
-$white: #FFFFFF;
-$black: #000000;
-$gray-light: #D9D9D9;
-$purple: #524796;
-$blue-light: #5B5FB1;
-$gray-medium: #858585;
-$gray-soft: #BAB8B8;
-$navy-dark: #0E1429;
-$navy: #25252D;
-$orange: #C97614;
-$orange-dark: #CC6D00;
-$blue: #294CC9;
-$cyan: #297ED2;
-$blue-pale: #C8CCE1;
-$yellow: #D1BB2E;
-$red: #D92A2A;
-$navy-deep: #111D35;
+
+$color-bg: #0E1429; // mørk baggrund
+$color-bg-card: #111D35; // mørkere kort-baggrund
+$color-text: #FFFFFF; // primær tekst
+$color-text-muted: #BAB8B8; // sekundær tekst
+$color-border: #25252D; // tynd kant eller separator
+
+// --- Primære tema-farver ---
+$color-primary: #524796; // hovedtema (bruges til overskrifter som "TID" og "BUS")
+$color-accent: #5B5FB1; // lysere accent af primær
+$color-highlight: #C97614; // orange til datoer og ikoner
+$color-warning: #CC6D00; // mørkere orange
+$color-info: #297ED2; // blå til infobokse
+$color-info-dark: #294CC9; // mørkere blå
+$color-success: #D1BB2E; // gul til klassekoder (DM01)
+$color-danger: #D92A2A; // rød til klassekoder (H1WE)
+$color-neutral-light: #D9D9D9; // lys baggrund til knapper eller inputfelter
+$color-neutral-gray: #858585; // grå tekst eller ikoner
+$color-neutral-blue: #C8CCE1; // meget lys blågrå tone
+
+// --- Ekstra (hvis du vil bruge gradienter eller skygger) ---
+$shadow-card: 0 4px 12px rgba(0, 0, 0, 0.3);
+$gradient-header: linear-gradient(180deg, #5B5FB1 0%, #524796 100%);
