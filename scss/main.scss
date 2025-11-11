@@ -1,1 +1,7 @@
 @use "components/DateAndTime" as *;
+// Main SCSS entry — import layout partials and components
+@use "layout/header";
+@use "components/Rejseplanen";
+
+// add any global imports below as needed
+

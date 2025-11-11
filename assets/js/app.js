@@ -1,4 +1,3 @@
-// import components here
 
 import { dateAndTime } from "./Controllers/DateAndTimeController.js";
 
@@ -9,14 +8,5 @@ dateAndTime({
   timezone: 'Europe/Copenhagen',
 });
 
-// import modules here
-import saveDataModule from './modules/localstorage.js';
-import { loadStorageModule, removeStorageModule } from './modules/localstorage.js';
-
-// import utils here
-
-// write cool main js code here
-saveDataModule();
-    
-loadStorageModule();
-removeStorageModule();
+import { BusPage } from "./Controllers/busController.js";
+BusPage();
