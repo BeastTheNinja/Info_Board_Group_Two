@@ -1,6 +1,7 @@
 // import components here
 
-import { dateAndTime } from './Controllers/dateandtimeController.js';
+import { dateAndTime } from "./Controllers/DateAndTimeController.js";
+
 
 dateAndTime({
   elementId: 'clock',
