@@ -1,0 +1,15 @@
+#TimePart{
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    
+    .TimePart__icon {
+        font-size: 1.25rem;
+        color: var(--color-primary);
+    }
+    
+    .TimePart__text {
+        font-size: 1rem;
+        color: var(--color-text);
+    }
+}
