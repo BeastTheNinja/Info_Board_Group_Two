@@ -1,0 +1,121 @@
+// Styles for the Rejseplanen / Bus panel (right-most column)
+
+$bus-bg: #0e2940;
+$panel-bg: #10273b;
+$card-bg: #12283b;
+$muted: #9fb7d6;
+$accent: #ffb84d;
+
+.bus-view {
+	width: 320px;
+	background: $bus-bg;
+	padding: 18px;
+	border-radius: 14px;
+	color: #f1f7ff;
+	box-shadow: 0 6px 18px rgba(2,14,28,0.45);
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-left: auto; // push to right in a flex/container layout
+}
+
+.bus-header {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.bus-logo {
+	width: 42px;
+	height: 42px;
+	object-fit: contain;
+	filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+}
+
+.bus-header h2 {
+	margin: 0;
+	font-size: 18px;
+	letter-spacing: 1px;
+	font-weight: 700;
+}
+
+.bus-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.bus-item {
+	background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.05));
+	border: 1px solid rgba(255,255,255,0.03);
+	padding: 10px;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.bus-stop {
+	flex: 1 1 auto;
+	font-weight: 700;
+	font-size: 14px;
+	color: #eaf4ff;
+}
+
+.bus-times {
+	width: 68px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.bus-departure {
+	font-size: 16px;
+	font-weight: 800;
+	color: #f7fbff;
+}
+
+.bus-arrival {
+	font-size: 12px;
+	color: $muted;
+}
+
+.bus-meta {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	gap: 6px;
+}
+
+.bus-line {
+	background: $accent;
+	color: #10213a;
+	padding: 4px 8px;
+	border-radius: 999px;
+	font-weight: 800;
+	font-size: 12px;
+}
+
+.bus-destination {
+	font-size: 12px;
+	color: #cfe6ff;
+}
+
+/* small utilities */
+.loading, .error {
+	text-align: center;
+	padding: 10px 0;
+	color: $muted;
+}
+
+@media (max-width: 900px) {
+	.bus-view {
+		width: 260px;
+		padding: 12px;
+	}
+}
+
