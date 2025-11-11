@@ -1,0 +1,44 @@
+#timePart{
+    align-items: center;
+    gap: 0.25rem;
+    
+    .TimePart__icon {
+        font-size: 1.25rem;
+        color: var(--color-primary);
+    }
+    
+    .TimePart__text {
+        font-size: 1rem;
+        color: var(--color-text);
+    }
+}
+
+#datePart{
+    align-items: center;
+    gap: 0.25rem;
+    
+    .DatePart__icon {
+        font-size: 1.25rem;
+        color: var(--color-primary);
+    }
+    
+    .DatePart__text {
+        font-size: 1rem;
+        color: var(--color-text);
+    }
+}
+
+#clock{
+    align-items: center;
+    gap: 0.25rem;
+    
+    .ClockPart__icon {
+        font-size: 1.25rem;
+        color: var(--color-primary);
+    }
+    
+    .ClockPart__text {
+        font-size: 1rem;
+        color: var(--color-text);
+    }
+}

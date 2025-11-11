@@ -1,3 +1,40 @@
+#timePart {
+  align-items: center;
+  gap: 0.25rem;
+}
+#timePart .TimePart__icon {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+#timePart .TimePart__text {
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+#datePart {
+  align-items: center;
+  gap: 0.25rem;
+}
+#datePart .DatePart__icon {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+#datePart .DatePart__text {
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+#clock {
+  align-items: center;
+  gap: 0.25rem;
+}
+#clock .ClockPart__icon {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+#clock .ClockPart__text {
+  font-size: 1rem;
+  color: var(--color-text);
 .bus-view {
   width: 320px;
   background: #0e2940;
