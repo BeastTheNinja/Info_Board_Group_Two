@@ -34,14 +34,6 @@ export const Li = (className = 'normal') => {
     return element;
 }
 
-export const Link = (to, text = '', className = 'normal') => {
-    const element = document.createElement('a');
-    element.className = className;
-    element.href = to
-    element.innerText = text
-    return element
-}
-
 export const Image = (src, title, className = '') => {
     const element = document.createElement('img')
     element.src = src
