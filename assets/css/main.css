@@ -1,1 +1,41 @@
-/*# sourceMappingURL=main.css.map */
+#timePart {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+#timePart .TimePart__icon {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+#timePart .TimePart__text {
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+#datePart {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+#datePart .DatePart__icon {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+#datePart .DatePart__text {
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+#clock {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+#clock .ClockPart__icon {
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+#clock .ClockPart__text {
+  font-size: 1rem;
+  color: var(--color-text);
+}/*# sourceMappingURL=main.css.map */
