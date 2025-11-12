@@ -15,13 +15,6 @@ const getTodayAndTomorrow = (days) => {
 }
 
 export const DagensRetPage = async () => {
-<<<<<<< Updated upstream
-    const title = "Dagens Ret"
-    const dagensRet = await getDagensRet()
-    const view = DagensRetView(dagensRet)
-    return await Layout(title, view)
-}
-=======
     const data = await hentRet()
     const days = data.Days
 
@@ -31,4 +24,3 @@ export const DagensRetPage = async () => {
     const container = document.getElementById("app");
     container.append(view);
 }
->>>>>>> Stashed changes
