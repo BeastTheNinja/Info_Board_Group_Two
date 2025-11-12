@@ -1,5 +1,6 @@
-import { Fragment, Paragraph, Heading } from "../atoms/index.js"
+import { Fragment, Paragraph, Heading, Div } from "../atoms/index.js"
 
+<<<<<<< Updated upstream
 export const DagensRetView = (dagensRet) => {
     const element = Fragment()
 
@@ -7,17 +8,30 @@ export const DagensRetView = (dagensRet) => {
     h2.innerText = "Dagens Ret"
 
     const p = Paragraph()
+=======
+export const DagensRetView = (days) => {
+    const container = Fragment()
 
-    if (dagensRet) {
-        p.innerHTML = `
-            <strong>${dagensRet.title}</strong><br>
-            ${dagensRet.description || ""}<br>
-            <em>Pris: ${dagensRet.price ? dagensRet.price + " kr." : "Ukendt"}</em>
-        `
-    } else {
-        p.innerText = "Der er ingen Dagens Ret lige nu."
-    }
+    // Simpel visning af dag og ret
+    days.forEach(day => {
+        const div = Div()
 
+        const heading = Heading()
+        heading.textContent = day.DayName.charAt(0).toUpperCase() + day.DayName.slice(1)
+        div.append(heading)
+>>>>>>> Stashed changes
+
+        const p = Paragraph()
+        p.textContent = day.Dish
+        div.append(p)
+
+<<<<<<< Updated upstream
     element.append(h2, p)
     return element
+=======
+        container.append(div)
+    })
+
+    return container
+>>>>>>> Stashed changes
 }
