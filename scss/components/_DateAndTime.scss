@@ -1,44 +1,47 @@
-#timePart{
+@use '../variables' as *;
+
+#timePart {
     align-items: center;
     gap: 0.25rem;
+    background-color: $color-accent;
     
     .TimePart__icon {
         font-size: 1.25rem;
-        color: var(--color-primary);
+        color: $color-primary;
     }
     
     .TimePart__text {
         font-size: 1rem;
-        color: var(--color-text);
+        color: $color-text;
     }
 }
 
-#datePart{
+#datePart {
     align-items: center;
     gap: 0.25rem;
     
     .DatePart__icon {
         font-size: 1.25rem;
-        color: var(--color-primary);
+        color: $color-highlight;  // Orange for date icon
     }
     
     .DatePart__text {
         font-size: 1rem;
-        color: var(--color-text);
+        color: $color-text;
     }
 }
 
-#clock{
+#clock {
     align-items: center;
     gap: 0.25rem;
     
     .ClockPart__icon {
         font-size: 1.25rem;
-        color: var(--color-primary);
+        color: $color-primary;
     }
     
     .ClockPart__text {
         font-size: 1rem;
-        color: var(--color-text);
+        color: $color-text;
     }
 }
