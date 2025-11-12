@@ -1,4 +1,10 @@
 // Main SCSS entry — import layout partials and components
+@use "abstracts/variables";
+@use "abstracts/mixins";
+@use "abstracts/functions";
+
+
+
 @use "layout/header";
 @use "components/Rejseplanen";
 
