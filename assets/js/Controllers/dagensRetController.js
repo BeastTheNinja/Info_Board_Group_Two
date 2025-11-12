@@ -1,5 +1,5 @@
 import { hentRet } from "../services/kantineFetch.js"
-import { DagensRetView } from "../View/molycules/DagensRetView.js"
+import { DagensRetView } from "../View/organisems/DagensRetView.js"
 
 const getTodayAndTomorrow = (days) => {
     const app = document.getElementById('app')
