@@ -1,4 +1,5 @@
 import { BusPage } from "./Controllers/busController.js";
+import { DagensRetPage } from "./Controllers/dagensRetController.js";
 import { dateAndTime } from "./Controllers/DateAndTimeController.js";
 
 dateAndTime({
@@ -8,4 +9,4 @@ dateAndTime({
 });
 
 BusPage();
-DagensRetPage()
+DagensRetPage();
