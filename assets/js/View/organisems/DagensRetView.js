@@ -1,28 +1,22 @@
-import { Fragment, Paragraph, Heading } from "../atoms/index.js"
+import { Fragment, Paragraph, Heading, Div } from "../atoms/index.js"
 
-// View-funktion der viser "Dagens Ret"
-export const DagensRetView = (dagensRet) => {
-    const element = Fragment()
+export const DagensRetView = (days) => {
+    const container = Fragment()
 
-    // Overskrift
-    const h2 = Heading(2)
-    h2.innerText = "Dagens Ret"
+    // Simpel visning af dag og ret
+    days.forEach(day => {
+        const div = Div()
 
-    // Tekstafsnit
-    const p = Paragraph()
+        const heading = Heading()
+        heading.textContent = day.DayName.charAt(0).toUpperCase() + day.DayName.slice(1)
+        div.append(heading)
 
-    if (dagensRet) {
-        p.innerHTML = `
-            <strong>${dagensRet.title}</strong><br>
-            ${dagensRet.description || ""}<br>
-            <em>Pris: ${dagensRet.price ? dagensRet.price + " kr." : "Ukendt"}</em>
-        `
-    } else {
-        p.innerText = "Der er ingen Dagens Ret lige nu."
-    }
+        const p = Paragraph()
+        p.textContent = day.Dish
+        div.append(p)
 
-    // Tilføj alt i rækkefølge
-    element.append(h2, p)
+        container.append(div)
+    })
 
-    return element
+    return container
 }
