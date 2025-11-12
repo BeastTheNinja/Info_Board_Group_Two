@@ -1,6 +1,6 @@
+import { Paragraph } from "../views/atoms/index.js"
 import { Layout } from "./layoutController.js"
 import { getDagensRet } from "../models/dagensRetModel.js"
-import { DagensRetView } from "../views/molecules/DagensRetView.js"
 
 export const DagensRetPage = async () => {
     const title = "Dagens Ret"
