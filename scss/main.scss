@@ -1,0 +1,17 @@
+@use "components/DateAndTime" as *;
+// Main SCSS entry — import layout partials and components
+@use "abstracts/variables";
+@use "abstracts/mixins";
+@use "abstracts/functions";
+
+
+
+@use "layout/header";
+@use "../scss/components/DateAndTime";
+@use "components/Rejseplanen";
+
+// Global styles
+//body {
+//  background-color: $color-bg;
+//  color: $color-text;
+//}
