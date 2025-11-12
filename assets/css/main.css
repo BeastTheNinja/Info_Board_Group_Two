@@ -1,1 +1,151 @@
-/*# sourceMappingURL=main.css.map */
+#clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  padding-left: 3rem;
+  padding-top: 3rem;
+  background-color: #111D35;
+  width: fit-content;
+  align-items: center;
+  border-radius: 40px;
+}
+
+svg {
+  width: 50px;
+  height: 50px;
+  stroke: #D9D9D9;
+  stroke-width: 6;
+  fill: none;
+}
+
+.timePart {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #5B5FB1;
+  letter-spacing: 0.25rem;
+  line-height: 1;
+}
+
+.datePart {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #CC6D00;
+  letter-spacing: 0.25rem;
+}
+
+.bus-view {
+  width: 320px;
+  background: #111D35;
+  padding: 18px;
+  border-radius: 14px;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.bus-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bus-logo {
+  width: 42px;
+  height: 42px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+}
+
+.bus-header h2 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.bus-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.bus-item {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.05));
+  border: 1px solid #25252D;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bus-stop {
+  flex: 1 1 auto;
+  font-weight: 700;
+  font-size: 14px;
+  color: #FFFFFF;
+}
+
+.bus-times {
+  width: 68px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bus-departure {
+  font-size: 16px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.bus-arrival {
+  font-size: 12px;
+  color: #BAB8B8;
+}
+
+.bus-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.bus-line {
+  background: #C97614;
+  color: #0E1429;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.bus-destination {
+  font-size: 12px;
+  color: #C8CCE1;
+}
+
+/* small utilities */
+.loading, .error {
+  text-align: center;
+  padding: 10px 0;
+  color: #BAB8B8;
+}
+
+@media (max-width: 900px) {
+  .bus-view {
+    width: 260px;
+    padding: 12px;
+  }
+}
