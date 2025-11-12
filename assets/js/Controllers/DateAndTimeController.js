@@ -11,8 +11,8 @@ export function dateAndTime({
   
     // Create inner elements for time and date
     el.innerHTML = `
-      <div id="timePart" style="font-size: 2.5rem; font-weight: bold;"></div>
-      <div id="datePart" style="font-size: 1.2rem; color: gray;"></div>
+      <div id="timePart" style="font-size: 2.5rem; color: #524796; font-weight: bold;"></div>
+      <div id="datePart" style="font-size: 1.2rem; color: #C97614;"></div>
     `;
   
     const timeEl = el.querySelector("#timePart");

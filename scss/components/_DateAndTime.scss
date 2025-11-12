@@ -1,47 +1,38 @@
-@use '../variables' as *;
-
-#timePart {
-    align-items: center;
-    gap: 0.25rem;
-    background-color: $color-accent;
-    
-    .TimePart__icon {
-        font-size: 1.25rem;
-        color: $color-primary;
-    }
-    
-    .TimePart__text {
-        font-size: 1rem;
-        color: $color-text;
-    }
-}
-
-#datePart {
-    align-items: center;
-    gap: 0.25rem;
-    
-    .DatePart__icon {
-        font-size: 1.25rem;
-        color: $color-highlight;  // Orange for date icon
-    }
-    
-    .DatePart__text {
-        font-size: 1rem;
-        color: $color-text;
-    }
-}
+@use '../abstracts/variables' as *;
 
 #clock {
-    align-items: center;
-    gap: 0.25rem;
-    
-    .ClockPart__icon {
-        font-size: 1.25rem;
-        color: $color-primary;
-    }
-    
-    .ClockPart__text {
-        font-size: 1rem;
-        color: $color-text;
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  padding-left: 5rem;    // Moved slightly more right
+  padding-top: 3rem;     // Moved down
+  background-color: $color-bg;
+  
 }
+    
+    svg {
+      width: 50px;
+      height: 50px;
+      stroke: $color-neutral-light;
+      stroke-width: 6;
+      fill: none;
+    }
+
+  .timePart {
+    font-size: 4rem;
+    font-weight: 900;
+    color: $color-accent;
+    letter-spacing: 0.25rem;
+    line-height: 1;
+  }
+
+
+  .datePart {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: $color-warning;
+    letter-spacing: 0.25rem;
+  }

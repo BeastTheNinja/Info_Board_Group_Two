@@ -1,12 +1,12 @@
-@use "variables" as *;
+@use "../scss/abstracts/variables" as *;
 
 // Import layout partials and components
 @use "layout/header";
-@use "components/DateAndTime";
+@use "../scss/components/DateAndTime";
 @use "components/Rejseplanen";
 
 // Global styles
-body {
-  background-color: $color-bg;
-  color: $color-text;
-}
+//body {
+//  background-color: $color-bg;
+//  color: $color-text;
+//}

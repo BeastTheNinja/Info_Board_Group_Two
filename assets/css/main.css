@@ -1,20 +1,40 @@
-#timePart {
-  align-items: center;
-  gap: 0.25rem;
-}
-
-
-#datePart {
-  align-items: center;
-  gap: 0.25rem;
-}
-
-
 #clock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  padding-left: 3rem;
+  padding-top: 3rem;
+  background-color: #111D35;
+  width: fit-content;
   align-items: center;
-  gap: 0.25rem;
+  border-radius: 40px;
 }
 
+svg {
+  width: 50px;
+  height: 50px;
+  stroke: #D9D9D9;
+  stroke-width: 6;
+  fill: none;
+}
+
+.timePart {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #5B5FB1;
+  letter-spacing: 0.25rem;
+  line-height: 1;
+}
+
+.datePart {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #CC6D00;
+  letter-spacing: 0.25rem;
+}
 
 .bus-view {
   width: 320px;
