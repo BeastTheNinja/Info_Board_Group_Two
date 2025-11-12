@@ -1,6 +1,11 @@
-@use "../scss/abstracts/variables" as *;
+@use "components/DateAndTime" as *;
+// Main SCSS entry — import layout partials and components
+@use "abstracts/variables";
+@use "abstracts/mixins";
+@use "abstracts/functions";
 
-// Import layout partials and components
+
+
 @use "layout/header";
 @use "../scss/components/DateAndTime";
 @use "components/Rejseplanen";

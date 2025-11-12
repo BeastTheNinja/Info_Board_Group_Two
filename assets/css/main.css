@@ -38,11 +38,11 @@ svg {
 
 .bus-view {
   width: 320px;
-  background: #0e2940;
+  background: #111D35;
   padding: 18px;
   border-radius: 14px;
-  color: #f1f7ff;
-  box-shadow: 0 6px 18px rgba(2, 14, 28, 0.45);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -81,7 +81,7 @@ svg {
 
 .bus-item {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.05));
-  border: 1px solid rgba(255, 255, 255, 0.03);
+  border: 1px solid #25252D;
   padding: 10px;
   border-radius: 8px;
   display: flex;
@@ -93,7 +93,7 @@ svg {
   flex: 1 1 auto;
   font-weight: 700;
   font-size: 14px;
-  color: #eaf4ff;
+  color: #FFFFFF;
 }
 
 .bus-times {
@@ -107,12 +107,12 @@ svg {
 .bus-departure {
   font-size: 16px;
   font-weight: 800;
-  color: #f7fbff;
+  color: #FFFFFF;
 }
 
 .bus-arrival {
   font-size: 12px;
-  color: #9fb7d6;
+  color: #BAB8B8;
 }
 
 .bus-meta {
@@ -123,8 +123,8 @@ svg {
 }
 
 .bus-line {
-  background: #ffb84d;
-  color: #10213a;
+  background: #C97614;
+  color: #0E1429;
   padding: 4px 8px;
   border-radius: 999px;
   font-weight: 800;
@@ -133,14 +133,14 @@ svg {
 
 .bus-destination {
   font-size: 12px;
-  color: #cfe6ff;
+  color: #C8CCE1;
 }
 
 /* small utilities */
 .loading, .error {
   text-align: center;
   padding: 10px 0;
-  color: #9fb7d6;
+  color: #BAB8B8;
 }
 
 @media (max-width: 900px) {
@@ -148,4 +148,4 @@ svg {
     width: 260px;
     padding: 12px;
   }
-}/*# sourceMappingURL=main.css.map */
+}
