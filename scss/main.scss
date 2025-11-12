@@ -7,7 +7,11 @@
 
 
 @use "layout/header";
+@use "../scss/components/DateAndTime";
 @use "components/Rejseplanen";
 
-// add any global imports below as needed
-
+// Global styles
+//body {
+//  background-color: $color-bg;
+//  color: $color-text;
+//}
