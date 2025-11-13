@@ -1,4 +1,4 @@
-import { Div, Heading } from "../atoms/index.js"
+import { Div, Heading } from "../atoms"
 
 export const SkemaView = () => {
     const element = Div('skema-view');

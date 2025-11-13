@@ -1,11 +1,10 @@
 import { Fragment } from "../View/atoms/index.js";
-import { HeadingView, MainView } from "../View/molycules/index.js";
+import { HeadingView, MainView } from "../View/molycules";
 
-export const Layout = (title, content, mainContent) => {
+export const Layout = (title, content) => {
   document.title = title;
 
   const element = Fragment();
-  // If a mainContent element is provided, use it. Otherwise fall back to the default MainView.
-  element.append(HeadingView(title, content), mainContent || MainView());
+  element.append(HeadingView(title, content), MainView());
   return element;
 };
