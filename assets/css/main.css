@@ -5,12 +5,9 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 2rem;
-  padding-left: 3rem;
+  padding-left: 5rem;
   padding-top: 3rem;
   background-color: #111D35;
-  width: fit-content;
-  align-items: center;
-  border-radius: 40px;
 }
 
 svg {
@@ -36,6 +33,31 @@ svg {
   letter-spacing: 0.25rem;
 }
 
+.MainView {
+  padding: 18px;
+}
+
+.MainView .flet-container {
+  display: grid;
+  /* left column (time/menu) fixed, center fluid, right panel fixed */
+  grid-template-columns: 320px 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* make sure the right column (bus panel) sits to the right when the panel itself uses margin-left:auto */
+.MainView .flet-container > .bus-view {
+  justify-self: end;
+}
+
+@media (max-width: 1100px) {
+  .MainView .flet-container {
+    grid-template-columns: 1fr; /* stack on smaller screens */
+  }
+  .MainView .flet-container > .bus-view {
+    justify-self: stretch;
+  }
+}
 .bus-view {
   width: 320px;
   background: #111D35;
@@ -58,8 +80,7 @@ svg {
 .bus-logo {
   width: 42px;
   height: 42px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
 }
 
@@ -124,7 +145,7 @@ svg {
 
 .bus-line {
   background: #C97614;
-  color: #0E1429;
+  color: #111D35;
   padding: 4px 8px;
   border-radius: 999px;
   font-weight: 800;
@@ -146,6 +167,61 @@ svg {
 @media (max-width: 900px) {
   .bus-view {
     width: 260px;
+    padding: 12px;
+  }
+}
+.skema-placeholder {
+  width: 100%;
+  background: #111D35;
+  padding: 18px;
+  border-radius: 14px;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.skema-placeholder .skema-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.skema-placeholder .skema-subtitle {
+  font-size: 14px;
+  color: #BAB8B8;
+  text-align: center;
+}
+
+.skema-placeholder .mock-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.skema-placeholder .mock-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: #FFFFFF;
+}
+
+.skema-placeholder .mock-item .code {
+  background: #D1BB2E;
+  color: #111D35;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .skema-placeholder {
     padding: 12px;
   }
 }
