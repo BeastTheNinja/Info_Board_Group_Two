@@ -13,6 +13,7 @@ export function dateAndTime({
     el.innerHTML = `
       <div id="timePart" style="font-size: 2.5rem; color: #524796; font-weight: bold;"></div>
       <div id="datePart" style="font-size: 1.2rem; color: #C97614;"></div>
+      <div id="datePart" style="font-size: 1.2rem; color: gray;"></div>
     `;
   
     const timeEl = el.querySelector("#timePart");
