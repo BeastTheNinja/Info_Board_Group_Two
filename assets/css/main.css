@@ -5,12 +5,11 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 2rem;
-  padding-left: 3rem;
+  padding-left: 5rem;
   padding-top: 3rem;
-  background-color: #111D35;
-  width: fit-content;
-  align-items: center;
+  width: 150px;
   border-radius: 40px;
+  background-color: #111D35;
 }
 
 svg {
@@ -124,7 +123,7 @@ svg {
 
 .bus-line {
   background: #C97614;
-  color: #0E1429;
+  color: #111D35;
   padding: 4px 8px;
   border-radius: 999px;
   font-weight: 800;
@@ -149,3 +148,18 @@ svg {
     padding: 12px;
   }
 }
+.kantine-view {
+  background-color: red;
+}
+
+.Div {
+  background-color: red;
+}
+
+.Heading {
+  background-color: red;
+}
+
+.Paragraph {
+  background-color: red;
+}/*# sourceMappingURL=main.css.map */
