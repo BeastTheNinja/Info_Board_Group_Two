@@ -1,1 +1,21 @@
+@use "../abstracts/variables" as *;
+
+// Grid defining three columns: left, center, right
+.info-board {
+	display: grid;
+	grid-template-columns: 1fr 1fr 320px;
+	gap: 22px;
+	align-items: start;
+}
+
+.panel {
+	background: $color-bg;
+	border-radius: 14px;
+	padding: 18px;
+	box-shadow: $shadow-card;
+}
+
+.panel--dark {
+	background: $color-bg;
+}
 // write grid styles here

@@ -1,1 +1,6 @@
-// write navigation styles here
+@use "../abstracts/variables" as *;
+
+.nav {
+	display: flex;
+	gap: 12px;
+}

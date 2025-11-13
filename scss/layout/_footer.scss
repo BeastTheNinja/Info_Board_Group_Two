@@ -1,1 +1,7 @@
-// write footer styles here
+@use "../abstracts/variables" as *;
+
+.site-footer {
+	padding: 12px;
+	text-align: center;
+	color: $color-text-muted;
+}

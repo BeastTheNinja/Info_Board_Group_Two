@@ -1,1 +1,7 @@
-// write form styles here
+@use "../abstracts/variables" as *;
+
+input, select, textarea {
+	padding: 8px;
+	border-radius: 6px;
+	border: 1px solid $color-border;
+}

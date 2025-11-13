@@ -1,17 +1,33 @@
-@use "components/DateAndTime" as *;
-// Main SCSS entry — import layout partials and components
-@use "abstracts/variables";
+// Main SCSS entry — import variables, reset, layout and main components
+@use "abstracts/variables" as *;
 @use "abstracts/mixins";
 @use "abstracts/functions";
-
-
-
-@use "layout/header";
-@use "../scss/components/DateAndTime";
+@use "base/reset";
+@use "layout/grid";
+@use "components/DateAndTime";
+@use "components/skema";
 @use "components/Rejseplanen";
 
-// Global styles
-//body {
-//  background-color: $color-bg;
-//  color: $color-text;
-//}
+// Root styles
+html, body {
+	height: 100%;
+}
+body {
+	background: $color-bg;
+	color: $color-text;
+	font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+	margin: 0;
+}
+
+.app {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+}
+
+.info-board {
+	width: 1100px;
+	max-width: calc(100% - 48px);
+}

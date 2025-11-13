@@ -1,0 +1,41 @@
+@use "../abstracts/variables" as *;
+
+.skema {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.skema .title {
+	text-align: center;
+	font-size: 20px;
+	font-weight: 800;
+	color: $color-text;
+}
+
+.skema-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.skema-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: $color-bg;
+	padding: 8px 12px;
+	border-radius: 8px;
+}
+
+.skema-item .code {
+	padding: 6px 10px;
+	border-radius: 6px;
+	font-weight: 800;
+}
+
+.skema-item .meta {
+	color: $color-text-muted;
+	font-size: 12px;
+}
+

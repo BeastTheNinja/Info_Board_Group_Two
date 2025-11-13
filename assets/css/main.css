@@ -1,3 +1,33 @@
+/* Minimal reset used by the info board */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body, #app {
+  margin: 0;
+  padding: 0;
+}
+
+.info-board {
+  display: grid;
+  grid-template-columns: 1fr 1fr 320px;
+  gap: 22px;
+  align-items: start;
+}
+
+.panel {
+  background: #111D35;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.panel--dark {
+  background: #111D35;
+}
+
 #clock {
   display: flex;
   flex-direction: column;
@@ -18,6 +48,50 @@ svg {
   fill: none;
 }
 
+.date-time {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.clock {
+  background: #111D35;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.clock .time {
+  font-size: 36px;
+  font-weight: 800;
+  color: #524796;
+}
+
+.clock .date {
+  color: #C97614;
+  font-weight: 700;
+}
+
+.menu {
+  margin-top: 6px;
+}
+
+.menu h3 {
+  margin: 0 0 8px 0;
+  color: #524796;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  padding: 6px 0;
+  color: #BAB8B8;
+}
+
 .timePart {
   font-size: 4rem;
   font-weight: 900;
@@ -33,31 +107,45 @@ svg {
   letter-spacing: 0.25rem;
 }
 
-.MainView {
-  padding: 18px;
+.skema {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.MainView .flet-container {
-  display: grid;
-  /* left column (time/menu) fixed, center fluid, right panel fixed */
-  grid-template-columns: 320px 1fr 320px;
-  gap: 24px;
-  align-items: start;
+.skema .title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 800;
+  color: #FFFFFF;
 }
 
-/* make sure the right column (bus panel) sits to the right when the panel itself uses margin-left:auto */
-.MainView .flet-container > .bus-view {
-  justify-self: end;
+.skema-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-@media (max-width: 1100px) {
-  .MainView .flet-container {
-    grid-template-columns: 1fr; /* stack on smaller screens */
-  }
-  .MainView .flet-container > .bus-view {
-    justify-self: stretch;
-  }
+.skema-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #111D35;
+  padding: 8px 12px;
+  border-radius: 8px;
 }
+
+.skema-item .code {
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 800;
+}
+
+.skema-item .meta {
+  color: #BAB8B8;
+  font-size: 12px;
+}
+
 .bus-view {
   width: 320px;
   background: #111D35;
@@ -170,58 +258,26 @@ svg {
     padding: 12px;
   }
 }
-.skema-placeholder {
-  width: 100%;
+html, body {
+  height: 100%;
+}
+
+body {
   background: #111D35;
-  padding: 18px;
-  border-radius: 14px;
   color: #FFFFFF;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: center;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  margin: 0;
 }
 
-.skema-placeholder .skema-title {
-  font-size: 22px;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-.skema-placeholder .skema-subtitle {
-  font-size: 14px;
-  color: #BAB8B8;
-  text-align: center;
-}
-
-.skema-placeholder .mock-list {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.skema-placeholder .mock-item {
+.app {
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 8px 12px;
-  border-radius: 999px;
-  color: #FFFFFF;
+  justify-content: center;
+  padding: 24px;
 }
 
-.skema-placeholder .mock-item .code {
-  background: #D1BB2E;
-  color: #111D35;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-weight: 700;
-}
-
-@media (max-width: 900px) {
-  .skema-placeholder {
-    padding: 12px;
-  }
+.info-board {
+  width: 1100px;
+  max-width: calc(100% - 48px);
 }

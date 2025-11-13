@@ -1,1 +1,8 @@
-// Typography styles
+@use "../abstracts/variables" as *;
+
+h1, h2, h3, h4 {
+	color: $color-text;
+	margin: 0 0 8px 0;
+}
+
+p { color: $color-text-muted; margin: 0; }

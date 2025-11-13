@@ -1,1 +1,8 @@
-// Button styles
+@use "../abstracts/variables" as *;
+
+.btn {
+	background: $color-primary;
+	color: $color-text;
+	padding: 8px 12px;
+	border-radius: 8px;
+}

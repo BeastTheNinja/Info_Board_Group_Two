@@ -21,6 +21,50 @@
       fill: none;
     }
 
+  .date-time {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .clock {
+    background: $color-bg;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .clock .time {
+    font-size: 36px;
+    font-weight: 800;
+    color: $color-primary;
+  }
+
+  .clock .date {
+    color: $color-highlight;
+    font-weight: 700;
+  }
+
+  .menu {
+    margin-top: 6px;
+  }
+
+  .menu h3 {
+    margin: 0 0 8px 0;
+    color: $color-primary;
+  }
+
+  .menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .menu li {
+    padding: 6px 0;
+    color: $color-text-muted;
+  }
+
   .timePart {
     font-size: 4rem;
     font-weight: 900;
