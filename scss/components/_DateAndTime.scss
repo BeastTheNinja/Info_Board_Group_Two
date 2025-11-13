@@ -3,11 +3,10 @@
 #clock {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
   gap: 0.5rem;
   padding: 2rem;
-  padding-left: 5rem;    // Moved slightly more right
+  padding-left: 3rem;    // Moved slightly more right
   padding-top: 3rem;     // Moved down
   width: 150px;
   border-radius: 40px;
@@ -26,6 +25,7 @@
   .timePart {
     font-size: 4rem;
     font-weight: 900;
+    padding-left: 130px;
     color: $color-accent;
     letter-spacing: 0.25rem;
     line-height: 1;

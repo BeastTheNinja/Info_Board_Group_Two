@@ -1,20 +1,39 @@
-@use "../abstracts/variables";
+@use "../abstracts/variables" as *;
 
 .kantine-view{
-    background-color: red;
+    background-color: #0E1429;
+    padding: 30px;
+    width: 400px;
+    border-radius: 40px;
 }
+
+.kantine-header{
+    color: #b3b8f7;
+      -webkit-text-stroke: 2px $color-accent; 
+}
+
+.kantine-day{
+ color: $color-primary;
+}
+
+.kantine-text{
+ color: $color-highlight;
+
+}
+
 
 .Div{
-    background-color: red;
+    background-color: rgb(64, 255, 0);
 
 }
 
+
 .Heading{
-    background-color: red;
+    background-color: rgb(21, 0, 255);
 
 }
 
 .Paragraph{
-    background-color: red;
+    background-color: rgb(234, 251, 0);
 
 }
