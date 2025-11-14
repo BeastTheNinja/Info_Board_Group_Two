@@ -1,0 +1,34 @@
+// Utility and shared component rules (team pills, small helpers)
+
+@use "../abstracts/variables" as vars;
+
+.loading,
+.error {
+  color: vars.$color-text-muted;
+  padding: 12px;
+}
+
+/* Team pill base + colors */
+.team-pill {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 14px;
+  font-weight: 800;
+  color: vars.$color-text;
+}
+.team-default {
+  background: vars.$color-accent;
+  color: vars.$color-text;
+}
+.team-red {
+  background: vars.$color-danger;
+  color: vars.$color-text;
+}
+.team-blue {
+  background: vars.$color-info;
+  color: vars.$color-text;
+}
+.team-yellow {
+  background: vars.$color-success;
+  color: vars.$color-text;
+}

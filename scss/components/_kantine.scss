@@ -1,0 +1,20 @@
+// Kantine / Dagens Ret styles
+
+@use "../abstracts/variables" as vars;
+
+.kantine-header{
+  font-size:28px;
+  color: vars.$color-accent;
+  margin:0 0 6px 0;
+}
+
+.kantine-day{
+  color: vars.$color-neutral-blue;
+  font-size:18px;
+  margin:6px 0;
+}
+
+.kantine-text{
+  color: vars.$color-text-muted;
+  font-size:16px;
+}

@@ -11,6 +11,13 @@ export const SkemaView = (arr) => {
     container.append(h1)
     container.append(h2)
 
+    // small map from team code -> color class. Add more teams here as needed.
+    const teamColorMap = {
+        H1WE: 'team-red',
+        P026: 'team-blue',
+        DM01: 'team-yellow'
+    }
+
     arr.forEach((item) => {
         const box = Div('skema-container')
 
@@ -21,6 +28,11 @@ export const SkemaView = (arr) => {
         const teamName = document.createElement('article')
         teamName.className = 'team-name'
         teamName.innerText = item.Team
+        // assign a color pill class based on team code (sanitize key)
+        const key = (item.Team || '').toString().trim().toUpperCase().replace(/[^A-Z0-9]/g, '')
+        const colorClass = teamColorMap[key]
+        if (colorClass) teamName.classList.add('team-pill', colorClass)
+        else teamName.classList.add('team-pill','team-default')
 
         const teamTitle = document.createElement('article')
         teamTitle.classList = 'team-title'

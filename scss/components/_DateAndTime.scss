@@ -1,38 +1,27 @@
-@use '../abstracts/variables' as *;
+// Date & Time styles
 
-#clock {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 2rem;
-  padding-left: 5rem;    // Moved slightly more right
-  padding-top: 3rem;     // Moved down
-  background-color: $color-bg;
-  
+@use "../abstracts/variables" as vars;
+
+#clock{
+  max-width:300px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  color: vars.$color-accent;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6) inset, 0 6px 20px rgba(0,0,0,0.6);
+  font-weight:700;
+  margin-bottom:12px;
 }
-    
-    svg {
-      width: 50px;
-      height: 50px;
-      stroke: $color-neutral-light;
-      stroke-width: 6;
-      fill: none;
-    }
 
-  .timePart {
-    font-size: 4rem;
-    font-weight: 900;
-    color: $color-accent;
-    letter-spacing: 0.25rem;
-    line-height: 1;
-  }
+#clock .time-part{
+  font-size:2.5rem;
+  color: vars.$color-accent;
+  font-weight:800;
+  line-height:1;
+}
 
-
-  .datePart {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: $color-warning;
-    letter-spacing: 0.25rem;
-  }
+#clock .date-part{
+  font-size:1.1rem;
+  color: vars.$color-highlight;
+  margin-top:6px;
+}

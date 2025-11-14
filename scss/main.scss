@@ -1,17 +1,17 @@
-@use "components/DateAndTime" as *;
-// Main SCSS entry — import layout partials and components
-@use "abstracts/variables";
+/* Main SCSS entry — use modules and include components */
+@use "abstracts/variables" as vars;
 @use "abstracts/mixins";
 @use "abstracts/functions";
 
+@use "base/base";
+@use "base/reset";
+@use "base/typography";
 
+@use "components/layout";
+@use "components/DateAndTime";
+@use "components/bus";
+@use "components/kantine";
+@use "components/skema";
+@use "components/utilities";
 
-@use "layout/header";
-@use "../scss/components/DateAndTime";
-@use "components/Rejseplanen";
-
-// Global styles
-//body {
-//  background-color: $color-bg;
-//  color: $color-text;
-//}
+/* You can add more imports for other components as needed */
