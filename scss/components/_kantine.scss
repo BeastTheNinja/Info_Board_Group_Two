@@ -3,18 +3,66 @@
 @use "../abstracts/variables" as vars;
 
 .kantine-header{
-  font-size:28px;
+  font-size:20px;
   color: vars.$color-accent;
-  margin:0 0 6px 0;
+  margin:0;
 }
 
 .kantine-day{
   color: vars.$color-neutral-blue;
-  font-size:18px;
-  margin:6px 0;
+  font-size:16px;
+  margin:4px 0;
 }
 
 .kantine-text{
   color: vars.$color-text-muted;
-  font-size:16px;
+  font-size:14px;
+  margin: 0;
+}
+
+.kantine-empty{
+  color: vars.$color-neutral-gray;
+  font-size: 14px;
+  margin-top: 6px;
+  opacity: 0.95;
+}
+
+/* The inner card that contains the daily dishes. This sits under the clock
+   as a separate rounded card inside the left column. */
+.dagens-card {
+  background: vars.$color-bg;
+  padding: 18px; /* larger inner padding to match reference */
+  border-radius: 12px;
+  box-shadow: vars.$shadow-card;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* make the dagens entries comfortable to read and not push layout */
+.dagens-card .kantine-day {
+  margin: 6px 0 0 0;
+  font-size: 15px;
+}
+.dagens-card .kantine-text {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+}
+
+/* Provide subtle focus outline only for keyboard users */
+.bus-item:focus, .skema-container:focus, .dagens-card:focus {
+  outline: 2px dashed rgba(91,95,177,0.18);
+  outline-offset: 4px;
+}
+
+/* Ensure the standalone clock card (when moved into the left column) keeps
+   its boxed appearance */
+.kantine-view .clock-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 14px; /* a touch more padding to balance with dagens-card */
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6) inset, 0 6px 20px rgba(0,0,0,0.6);
+  color: vars.$color-accent;
+  max-width: 320px;
+  width: 100%;
 }

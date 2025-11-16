@@ -29,6 +29,20 @@
   gap: 12px;
 }
 
+/* Keep long bus lists contained and scrollable */
+.bus-list {
+  max-height: 360px;
+  overflow: auto;
+  padding-right: 6px; /* space for scrollbar */
+}
+
+.bus-item {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.bus-item:hover {
+  transform: translateY(-3px);
+}
+
 .bus-item {
   display: flex;
   align-items: center;

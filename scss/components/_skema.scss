@@ -4,49 +4,67 @@
 
 .skema-view {
   background: vars.$color-bg;
-  padding: 14px;
+  padding: 12px;
   border-radius: 12px;
 }
 
 .skema-title {
-  font-size: 28px;
+  font-size: 22px;
   text-align: center;
   color: vars.$color-accent;
+  margin: 0 0 6px 0;
 }
 .skema-subtitle {
   color: vars.$color-text-muted;
   text-align: center;
+  margin-bottom: 6px;
+}
+
+/* Container for the list of skema items so long lists stay scrollable */
+.skema-view .skema-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 360px;
+  overflow: auto;
+  padding-right: 6px;
 }
 
 .skema-container {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
   background: vars.$box-bg;
-  margin: 8px 0;
-  padding: 8px 10px;
+  margin: 6px 0;
+  padding: 6px 8px;
   border-radius: 8px;
+}
+.skema-container {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.skema-container:hover {
+  transform: translateY(-2px);
 }
 .lokale {
   background: vars.$color-success;
   color: vars.$color-text;
-  padding: 5px 8px;
+  padding: 4px 6px;
   border-radius: 6px;
-  min-width: 48px;
+  min-width: 44px;
   text-align: center;
   font-weight: 700;
 }
 .team-name {
-  padding: 5px 8px;
-  border-radius: 16px;
-  min-width: 64px;
+  padding: 4px 6px;
+  border-radius: 14px;
+  min-width: 56px;
   text-align: center;
   font-weight: 700;
 }
 .time {
-  padding: 6px 10px;
+  padding: 4px 8px;
   border-radius: 8px;
-  min-width: 64px;
+  min-width: 56px;
   text-align: center;
   font-weight: 700;
 }
@@ -54,9 +72,9 @@
 /* Team pills */
 .team-pill {
   display: inline-block;
-  padding: 4px 8px;
+  padding: 3px 6px;
   border-radius: 14px;
-  font-weight: 800;
+  font-weight: 700;
   color: vars.$color-text;
 }
 .team-default {

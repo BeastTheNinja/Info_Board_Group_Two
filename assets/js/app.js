@@ -9,6 +9,10 @@ dateAndTime({
   timezone: "Europe/Copenhagen",
 });
 
+// Give the clock element a `.clock-card` class so it receives panel styling in the grid
+const clockEl = document.getElementById('clock');
+if (clockEl) clockEl.classList.add('clock-card');
+
 BusPage();
 
 SkemaPage()
