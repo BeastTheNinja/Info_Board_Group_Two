@@ -9,11 +9,15 @@ const renderToDOM = (departures) => {
     if (!root) {
         root = document.createElement('div');
         root.id = 'bus-root';
+        // make the wrapper the grid item by giving it the panel class
+        root.className = 'bus-view';
         app.appendChild(root);
     }
     // clear previous
     root.innerHTML = '';
     const view = BusView(departures);
+    // ensure we don't duplicate panel classes on nested elements
+    if (view && view.classList && view.classList.contains('bus-view')) view.classList.remove('bus-view');
     root.appendChild(view);
 };
 
@@ -28,6 +32,7 @@ export const BusPage = async (force = false) => {
     if (!root) {
         root = document.createElement('div');
         root.id = 'bus-root';
+        root.className = 'bus-view';
         app.appendChild(root);
     }
     root.innerHTML = '<div class="loading">Loading departures...</div>';
