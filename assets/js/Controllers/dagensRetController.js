@@ -31,6 +31,16 @@ export const DagensRetPage = async () => {
         else app.append(newEl)
     }
 
+    // expose a manual renderer for debugging from the console
+    window._renderKantineData = (rawData) => {
+        try {
+            console.log('Manual render called with', rawData)
+            renderToDOM(rawData)
+        } catch (e) {
+            console.warn('Manual render failed', e)
+        }
+    }
+
     // initial render (cached or fetched)
     try {
         const data = await hentRet()
@@ -50,8 +60,13 @@ export const DagensRetPage = async () => {
     // expose manual controls for debugging
     window.refreshKantine = async (force = false) => {
         // pass true to force a fresh network fetch
+        console.log('refreshKantine called; force=', !!force)
         const fresh = force ? await fetchFreshNow() : await fetchNow()
-        if (fresh) renderToDOM(fresh)
+        console.log('refreshKantine fetched:', fresh)
+        if (fresh) {
+            console.log('refreshKantine rendering...')
+            try { renderToDOM(fresh) } catch (e) { console.warn('renderToDOM failed', e) }
+        }
         return fresh
     }
     window.stopKantineRefresh = () => stopAutoRefresh()

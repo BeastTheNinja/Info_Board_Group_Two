@@ -47,19 +47,21 @@ export const fetchFreshNow = async () => {
     }
 }
 
-// Schedule weekday 05:00 fresh fetches.
+// Schedule weekday 00:01 fresh fetches.
 let kantineTimeoutId = null
 let kantineRunning = false
 
-const computeNextWeekday5AM = () => {
+const computeNextWeekdayMidnightOne = () => {
     const now = new Date()
     const candidate = new Date(now)
-    candidate.setHours(5, 0, 0, 0)
+    // schedule at 00:01 (one minute past midnight)
+    candidate.setHours(0, 1, 0, 0)
 
     const isWeekday = (d) => d.getDay() >= 1 && d.getDay() <= 5
 
     if (now < candidate && isWeekday(candidate)) return candidate
 
+    // advance day-by-day until next weekday candidate
     let next = new Date(candidate.getTime() + 24 * 60 * 60 * 1000)
     while (!isWeekday(next)) next = new Date(next.getTime() + 24 * 60 * 60 * 1000)
     return next
@@ -67,7 +69,7 @@ const computeNextWeekday5AM = () => {
 
 const scheduleNextRun = async (onUpdate) => {
     if (!kantineRunning) return
-    const next = computeNextWeekday5AM()
+    const next = computeNextWeekdayMidnightOne()
     const delay = next.getTime() - Date.now()
     if (kantineTimeoutId) clearTimeout(kantineTimeoutId)
     console.log('Kantine: next scheduled fetch at', next.toString())
