@@ -1,95 +1,144 @@
-// SCSS partial for Skema styles (mirrors important rules from assets/css/main.css)
-
 @use "../abstracts/variables" as vars;
+@use "../abstracts/mixins" as mixins;
 
+/* SKEMA panel - central column */
 .skema-view {
-  background: vars.$color-bg;
-  padding: 12px;
-  border-radius: 12px;
+	@include mixins.panel(20px, 16px);
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	align-items: center;
 }
 
-.skema-title {
-  font-size: 22px;
-  text-align: center;
-  color: vars.$color-accent;
-  margin: 0 0 6px 0;
+.skema-header {
+	text-align: center;
+	color: vars.$color-text; /* white */
+	font-weight: 900;
+	font-size: var(--font-xxl);
+	letter-spacing: 0.6px;
+	margin-bottom: 2px;
 }
-.skema-subtitle {
-  color: vars.$color-text-muted;
-  text-align: center;
-  margin-bottom: 6px;
-}
-
-/* Container for the list of skema items so long lists stay scrollable */
-.skema-view .skema-list {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  max-height: 360px;
-  overflow: auto;
-  padding-right: 6px;
+.skema-sub {
+	color: vars.$color-text-muted;
+	text-align: center;
+	font-size: var(--font-md);
+	margin-bottom: 8px;
 }
 
-.skema-container {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  background: vars.$box-bg;
-  margin: 6px 0;
-  padding: 6px 8px;
-  border-radius: 8px;
-}
-.skema-container {
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
-}
-.skema-container:hover {
-  transform: translateY(-2px);
-}
-.lokale {
-  background: vars.$color-success;
-  color: vars.$color-text;
-  padding: 4px 6px;
-  border-radius: 6px;
-  min-width: 44px;
-  text-align: center;
-  font-weight: 700;
-}
-.team-name {
-  padding: 4px 6px;
-  border-radius: 14px;
-  min-width: 56px;
-  text-align: center;
-  font-weight: 700;
-}
-.time {
-  padding: 4px 8px;
-  border-radius: 8px;
-  min-width: 56px;
-  text-align: center;
-  font-weight: 700;
+/* list container: flexible and won't force page scrolling */
+.skema-list {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow: hidden;
+	/* narrower centered column inside the panel to match udklip.png */
+	max-width: 520px;
+	margin: 0 auto;
 }
 
-/* Team pills */
+/* Each row: a dark rounded bar containing small colored team pill, white info pill, and time */
+.skema-row {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	width: 100%;
+	padding: 10px 12px;
+	border-radius: 12px;
+	background: rgba(2,8,22,0.28); /* slightly darker bar */
+	transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.skema-row:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(2,6,23,0.5); }
+
 .team-pill {
-  display: inline-block;
-  padding: 3px 6px;
-  border-radius: 14px;
-  font-weight: 700;
-  color: vars.$color-text;
+	min-width: 44px;
+	height: 28px;
+	padding: 4px 10px;
+	border-radius: 8px;
+	font-weight: 900;
+	font-size: var(--font-sm);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: inset 0 -2px 0 rgba(0,0,0,0.08);
 }
-.team-default {
-  background: vars.$color-accent;
-  color: vars.$color-text;
+.team-pill--red { background: vars.$color-danger; color: vars.$color-text; }
+.team-pill--yellow { background: vars.$color-success; color: vars.$color-text; }
+.team-pill--blue { background: vars.$color-info; color: vars.$color-text; }
+
+/* Locale (room) pill - small subtle color on left */
+.lokale-pill {
+	background: rgba(255,255,255,0.04);
+	color: vars.$color-text;
+	padding: 6px 8px;
+	border-radius: 8px;
+	font-weight: 800;
+	font-size: calc(var(--font-sm) - 1px);
+	min-width: 44px;
+	text-align: center;
 }
-.team-red {
-  background: vars.$color-danger;
-  color: vars.$color-text;
+
+/* Subject pill - light rounded chip showing subject name */
+.subject-pill {
+	background: vars.$color-neutral-light;
+	color: #0b1626;
+	padding: 8px 12px;
+	border-radius: 999px;
+	font-weight: 800;
+	font-size: var(--font-sm);
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin-left: 6px;
 }
-.team-blue {
-  background: vars.$color-info;
-  color: vars.$color-text;
+
+/* Subject color variants */
+.subject--digital { background: #f6f3e6; color: #0b1626; }
+.subject--web { background: vars.$color-info; color: vars.$color-text; }
+.subject--figma { background: vars.$color-success; color: vars.$color-text; }
+.subject--photoshop { background: vars.$color-highlight; color: vars.$color-text; }
+.subject--grafisk { background: vars.$color-danger; color: vars.$color-text; }
+.subject--medie { background: vars.$color-accent; color: vars.$color-text; }
+.subject--muted { background: rgba(255,255,255,0.06); color: vars.$color-text; }
+
+/* Room/locale color variants (by starting letter) */
+.lokale--b { background: vars.$color-info; color: vars.$color-text; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06); }
+.lokale--d { background: vars.$color-success; color: vars.$color-text; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06); }
+.lokale--p { background: vars.$color-accent; color: vars.$color-text; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06); }
+.lokale--muted { background: rgba(255,255,255,0.04); color: vars.$color-text; }
+
+.info-pill {
+	background: vars.$color-neutral-light;
+	color: #0b1626;
+	padding: 8px 14px;
+	border-radius: 999px;
+	font-weight: 800;
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	box-shadow: 0 2px 0 rgba(0,0,0,0.04);
 }
-.team-yellow {
-  background: vars.$color-success;
-  color: vars.$color-text;
+
+.skema-subinfo { color: vars.$color-text-muted; font-size: var(--font-sm); }
+
+.time-pill {
+	margin-left: auto;
+	background: rgba(255,255,255,0.06);
+	color: vars.$color-text-muted;
+	padding: 6px 10px;
+	border-radius: 8px;
+	font-weight: 800;
+	font-size: var(--font-sm);
 }
+
+@media (max-width: vars.$bp-md) {
+	.skema-view { padding: 12px; gap: 10px; }
+	.skema-header { font-size: var(--font-xl); }
+	.skema-row { padding: 8px; }
+	.team-pill { min-width: 36px; height: 24px; font-size: calc(var(--font-sm) - 1px); }
+	.info-pill { padding: 6px 10px; font-size: calc(var(--font-sm) - 1px); }
+	.time-pill { padding: 4px 8px; font-size: calc(var(--font-sm) - 1px); }
+}
+

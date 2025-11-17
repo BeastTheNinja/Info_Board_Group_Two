@@ -22,3 +22,11 @@ $color-neutral-blue: #c8cce1; // meget lys blågrå tone
 // --- Ekstra (hvis du vil bruge gradienter eller skygger) ---
 $shadow-card: 0 4px 12px rgba(0, 0, 0, 0.3);
 $gradient-header: linear-gradient(180deg, #5b5fb1 0%, #524796 100%);
+
+// Breakpoints (use in media queries)
+$bp-xs: 360px; // very small phones
+$bp-sm: 640px; // phones
+$bp-md: 1000px; // tablets / small laptops
+$bp-lg: 1200px; // desktop
+$bp-xl: 1600px; // large desktop
+$bp-4k: 3840px; // 4k screens
