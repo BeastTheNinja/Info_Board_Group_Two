@@ -158,55 +158,63 @@ table {
   min-height: 100vh;
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 html, body {
   height: 100%;
   margin: 0;
   background: #0e1429;
-  color: #bab8b8;
+  color: #ffffff;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  overflow: hidden; /* prevent page-level scroll */
+  overflow: hidden;
+}
+
+:root {
+  --font-sm: 12px;
+  --font-base: 14px;
+  --font-md: 16px;
+  --font-lg: 20px;
+  --font-xl: 24px;
+  --font-xxl: 32px;
 }
 
 .container {
-  /* fix container to viewport with box-sizing so borders/padding don't add scroll */
-  height: calc(100vh - 24px);
-  max-width: 1220px; /* limit width so layout stays centered */
-  margin: 12px auto;
-  padding: 12px;
-  /* removed the prominent blue outline per design feedback */
-  border: none;
-  box-sizing: border-box;
-  overflow: hidden; /* ensure no page scrolling */
+  height: 100vh;
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 16px;
+  overflow: hidden;
 }
 
 #app {
+  height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1.15fr 1fr;
+  /* tighten the center column and slightly reduce right column to match reference */
+  grid-template-columns: 1fr 1.25fr 0.95fr;
   grid-template-rows: auto 1fr;
   grid-template-areas: "kantine skema bus" "kantine skema bus";
-  gap: 16px 12px; /* slightly smaller gaps to reduce vertical footprint */
+  gap: 22px;
   align-items: start;
-  height: 100%;
+  min-height: 0;
 }
 
-.skema-view,
-.bus-view,
-.clock-card {
+/* Generic panel wrapper used by components */
+.panel {
   background: #111d35;
-  padding: 12px;
-  border-radius: 12px;
+  color: #ffffff;
+  padding: 18px;
+  border-radius: 14px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  /* allow content height control but keep a small visual baseline */
-  min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+  min-height: 0;
 }
 
-/* grid placement */
-.clock-card {
-  max-width: 320px;
-  align-self: flex-start; /* keep the small inner clock card pinned to the top */
+.kantine-view {
+  grid-area: kantine;
 }
 
 .skema-view {
@@ -217,88 +225,116 @@ html, body {
   grid-area: bus;
 }
 
-.kantine-view {
-  grid-area: kantine; /* span both rows via template-areas */
+/* Keep children shrinkable so the grid doesn't overflow */
+#app, .container, .kantine-view, .skema-view, .bus-view {
+  min-height: 0;
+  min-width: 0;
+}
+
+/* Helper: lists should flex but not force the page to scroll */
+.flex-list {
   display: flex;
   flex-direction: column;
-  gap: 18px; /* match reference spacing between clock and dagens card */
-  padding: 18px; /* spacing around inner cards to match blue border */
+  gap: 10px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Responsive: collapse to single column on narrow viewports */
+@media (max-width: 1000px) {
+  :root {
+    --font-sm: 11px;
+    --font-base: 12px;
+    --font-md: 14px;
+    --font-lg: 16px;
+    --font-xl: 18px;
+    --font-xxl: 22px;
+  }
+  #app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "kantine" "skema" "bus";
+    gap: 12px;
+  }
+  .container {
+    padding: 8px;
+  }
+  .panel {
+    padding: 10px;
+    border-radius: 10px;
+  }
+}
+.clock-card {
+  background: #111d35;
+  color: #ffffff;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 360px;
+  color: #5b5fb1;
+}
+
+.clock-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.clock-time {
+  font-size: 2.6rem;
+  font-weight: 900;
+  line-height: 1;
+  color: #5b5fb1;
+}
+
+.clock-date {
+  font-size: var(--font-base);
+  color: #c97614;
+}
+
+/* Embedded clock variant for the kantine left column */
+.clock-embedded {
   background: transparent;
-  border-radius: 0;
-  align-items: flex-start;
+  box-shadow: none;
+  padding: 0;
+}
+
+.clock-embedded .clock-time {
+  font-size: 2.2rem;
 }
 
 @media (max-width: 1000px) {
-  #app {
-    grid-template-columns: 1fr;
+  .clock-time {
+    font-size: 1.9rem;
   }
-  .kantine-view, .skema-view, .bus-view {
-    grid-column: auto;
+  .clock-embedded .clock-time {
+    font-size: 1.6rem;
   }
 }
-/* Reusable panel header style for consistent titles */
-.panel-header {
+.bus-view {
+  background: #111d35;
+  color: #ffffff;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 22px;
-  color: #5b5fb1;
-  font-weight: 800;
-  margin: 0 0 8px 0;
-}
-
-#clock {
-  max-width: 320px;
-  width: 100%;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-  color: #5b5fb1;
-  padding: 10px;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6) inset, 0 6px 20px rgba(0, 0, 0, 0.6);
-  font-weight: 700;
-  margin: 0; /* layout grid gap handles spacing */
-}
-
-#clock .time-part {
-  font-size: 2.2rem;
-  color: #5b5fb1;
-  font-weight: 800;
-  line-height: 1;
-  margin: 0;
-}
-
-#clock .date-part {
-  font-size: 1rem;
-  color: #c97614;
-  margin-top: 4px;
-}
-
-/* When the clock is embedded inside the kantine card we want it to visually
-   belong to that card (no separate background or shadow). Use a small
-   inline area for the time and date. */
-.kantine-view .clock-embedded {
-  background: transparent;
-  padding: 0;
-  box-shadow: none;
-  border-radius: 0;
-  max-width: 100%;
-}
-
-.kantine-view .clock-embedded .time-part {
-  font-size: 2.4rem; /* a little larger than normal but within the left card */
-  margin: 0 0 6px 0;
-}
-
-.kantine-view .clock-embedded .date-part {
-  font-size: 0.95rem;
-  margin-top: 2px;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .bus-header {
   display: flex;
-  gap: 12px;
   align-items: center;
-  margin-bottom: 12px;
+  gap: 10px;
+}
+
+.bus-header h2 {
+  margin: 0;
+  color: #5b5fb1;
+  font-size: var(--font-xxl);
+  font-weight: 900;
 }
 
 .bus-logo {
@@ -306,47 +342,33 @@ html, body {
   height: 36px;
 }
 
-.bus-header h2 {
-  color: #5b5fb1;
-  font-size: 28px;
-  margin: 0;
-}
-
 .bus-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-
-/* Keep long bus lists contained and scrollable */
-.bus-list {
-  max-height: 360px;
-  overflow: auto;
-  padding-right: 6px; /* space for scrollbar */
-}
-
-.bus-item {
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
-}
-
-.bus-item:hover {
-  transform: translateY(-3px);
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .bus-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #0e1429;
-  padding: 12px;
+  gap: 12px;
+  padding: 12px 14px;
   border-radius: 12px;
+  background: rgba(0, 0, 0, 0.04);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.bus-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
 }
 
 .bus-stop {
-  font-weight: 700;
+  font-weight: 800;
   color: #5b5fb1;
 }
 
@@ -355,38 +377,33 @@ html, body {
   flex-direction: column;
   align-items: flex-end;
   gap: 6px;
-  margin-left: 12px;
-  min-width: 80px;
+  min-width: 64px;
 }
 
 .bus-departure {
-  background: #294cc9;
+  background: #297ed2;
   color: #ffffff;
-  padding: 6px 10px;
-  border-radius: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 900;
+  box-shadow: 0 6px 14px rgba(47, 88, 255, 0.18);
 }
 
 .bus-arrival {
-  background: #297ed2;
+  background: rgba(255, 255, 255, 0.06);
   color: #bab8b8;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 13px;
-}
-
-.bus-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  align-items: flex-end;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: var(--font-sm);
 }
 
 .bus-line {
   background: #d92a2a;
   color: #ffffff;
-  padding: 6px 10px;
-  border-radius: 14px;
-  font-weight: 700;
+  padding: 6px 8px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: var(--font-sm);
 }
 
 .bus-destination {
@@ -396,207 +413,327 @@ html, body {
   color: #bab8b8;
 }
 
-.kantine-header {
-  font-size: 20px;
-  color: #5b5fb1;
-  margin: 0;
+@media (max-width: 1000px) {
+  .bus-item {
+    padding: 8px 10px;
+  }
+  .bus-header h2 {
+    font-size: var(--font-xl);
+  }
 }
-
-.kantine-day {
-  color: #c8cce1;
-  font-size: 16px;
-  margin: 4px 0;
-}
-
-.kantine-text {
-  color: #bab8b8;
-  font-size: 14px;
-  margin: 0;
-}
-
-.kantine-empty {
-  color: #858585;
-  font-size: 14px;
-  margin-top: 6px;
-  opacity: 0.95;
-}
-
-/* The inner card that contains the daily dishes. This sits under the clock
-   as a separate rounded card inside the left column. */
-.dagens-card {
-  background: #111d35;
-  padding: 18px; /* larger inner padding to match reference */
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+.kantine-view {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 18px;
 }
 
-/* make the dagens entries comfortable to read and not push layout */
-.dagens-card .kantine-day {
-  margin: 6px 0 0 0;
-  font-size: 15px;
-}
-
-.dagens-card .kantine-text {
-  margin: 4px 0 0 0;
-  font-size: 14px;
-}
-
-/* Provide subtle focus outline only for keyboard users */
-.bus-item:focus, .skema-container:focus, .dagens-card:focus {
-  outline: 2px dashed rgba(91, 95, 177, 0.18);
-  outline-offset: 4px;
-}
-
-/* Ensure the standalone clock card (when moved into the left column) keeps
-   its boxed appearance */
-.kantine-view .clock-card {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
-  padding: 14px; /* a touch more padding to balance with dagens-card */
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6) inset, 0 6px 20px rgba(0, 0, 0, 0.6);
-  color: #5b5fb1;
-  max-width: 320px;
+.dagens-card {
+  background: #111d35;
+  color: #ffffff;
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   width: 100%;
 }
 
-.skema-view {
-  background: #111d35;
-  padding: 12px;
-  border-radius: 12px;
-}
-
-.skema-title {
-  font-size: 22px;
-  text-align: center;
+.dagens-title {
+  font-size: var(--font-xxl);
   color: #5b5fb1;
-  margin: 0 0 6px 0;
+  font-weight: 900;
+  text-shadow: 0 2px 0 rgba(91, 95, 177, 0.08);
 }
 
-.skema-subtitle {
+.dagens-sub {
   color: #bab8b8;
-  text-align: center;
-  margin-bottom: 6px;
+  font-size: var(--font-md);
 }
 
-/* Container for the list of skema items so long lists stay scrollable */
-.skema-view .skema-list {
+.dagens-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 360px;
-  overflow: auto;
-  padding-right: 6px;
 }
 
-.skema-container {
+.dagens-item {
   display: flex;
-  gap: 8px;
-  align-items: center;
-  background: #0e1429;
-  margin: 6px 0;
-  padding: 6px 8px;
-  border-radius: 8px;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.skema-container {
+.dagens-day {
+  color: #c97614;
+  font-weight: 800;
+}
+
+@media (max-width: 1000px) {
+  .dagens-title {
+    font-size: var(--font-xl);
+  }
+  .dagens-card {
+    padding: 10px;
+  }
+}
+/* SKEMA panel - central column */
+.skema-view {
+  background: #111d35;
+  color: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.skema-header {
+  text-align: center;
+  color: #ffffff; /* white */
+  font-weight: 900;
+  font-size: var(--font-xxl);
+  letter-spacing: 0.6px;
+  margin-bottom: 2px;
+}
+
+.skema-sub {
+  color: #bab8b8;
+  text-align: center;
+  font-size: var(--font-md);
+  margin-bottom: 8px;
+}
+
+/* list container: flexible and won't force page scrolling */
+.skema-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  /* narrower centered column inside the panel to match udklip.png */
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* Each row: a dark rounded bar containing small colored team pill, white info pill, and time */
+.skema-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(2, 8, 22, 0.28); /* slightly darker bar */
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
-.skema-container:hover {
-  transform: translateY(-2px);
+.skema-row:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(2, 6, 23, 0.5);
 }
 
-.lokale {
+.team-pill {
+  min-width: 44px;
+  height: 28px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: 900;
+  font-size: var(--font-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.team-pill--red {
+  background: #d92a2a;
+  color: #ffffff;
+}
+
+.team-pill--yellow {
   background: #d1bb2e;
   color: #ffffff;
-  padding: 4px 6px;
-  border-radius: 6px;
+}
+
+.team-pill--blue {
+  background: #297ed2;
+  color: #ffffff;
+}
+
+/* Locale (room) pill - small subtle color on left */
+.lokale-pill {
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: calc(var(--font-sm) - 1px);
   min-width: 44px;
   text-align: center;
-  font-weight: 700;
 }
 
-.team-name {
-  padding: 4px 6px;
-  border-radius: 14px;
-  min-width: 56px;
-  text-align: center;
-  font-weight: 700;
-}
-
-.time {
-  padding: 4px 8px;
-  border-radius: 8px;
-  min-width: 56px;
-  text-align: center;
-  font-weight: 700;
-}
-
-/* Team pills */
-.team-pill {
-  display: inline-block;
-  padding: 3px 6px;
-  border-radius: 14px;
-  font-weight: 700;
-  color: #ffffff;
-}
-
-.team-default {
-  background: #5b5fb1;
-  color: #ffffff;
-}
-
-.team-red {
-  background: #d92a2a;
-  color: #ffffff;
-}
-
-.team-blue {
-  background: #297ed2;
-  color: #ffffff;
-}
-
-.team-yellow {
-  background: #d1bb2e;
-  color: #ffffff;
-}
-
-.loading,
-.error {
-  color: #bab8b8;
-  padding: 12px;
-}
-
-/* Team pill base + colors */
-.team-pill {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 14px;
+/* Subject pill - light rounded chip showing subject name */
+.subject-pill {
+  background: #d9d9d9;
+  color: #0b1626;
+  padding: 8px 12px;
+  border-radius: 999px;
   font-weight: 800;
-  color: #ffffff;
+  font-size: var(--font-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 6px;
 }
 
-.team-default {
-  background: #5b5fb1;
-  color: #ffffff;
+/* Subject color variants */
+.subject--digital {
+  background: #f6f3e6;
+  color: #0b1626;
 }
 
-.team-red {
-  background: #d92a2a;
-  color: #ffffff;
-}
-
-.team-blue {
+.subject--web {
   background: #297ed2;
   color: #ffffff;
 }
 
-.team-yellow {
+.subject--figma {
   background: #d1bb2e;
   color: #ffffff;
+}
+
+.subject--photoshop {
+  background: #c97614;
+  color: #ffffff;
+}
+
+.subject--grafisk {
+  background: #d92a2a;
+  color: #ffffff;
+}
+
+.subject--medie {
+  background: #5b5fb1;
+  color: #ffffff;
+}
+
+.subject--muted {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+/* Room/locale color variants (by starting letter) */
+.lokale--b {
+  background: #297ed2;
+  color: #ffffff;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.lokale--d {
+  background: #d1bb2e;
+  color: #ffffff;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.lokale--p {
+  background: #5b5fb1;
+  color: #ffffff;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.lokale--muted {
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+}
+
+.info-pill {
+  background: #d9d9d9;
+  color: #0b1626;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.04);
+}
+
+.skema-subinfo {
+  color: #bab8b8;
+  font-size: var(--font-sm);
+}
+
+.time-pill {
+  margin-left: auto;
+  background: rgba(255, 255, 255, 0.06);
+  color: #bab8b8;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: var(--font-sm);
+}
+
+@media (max-width: 1000px) {
+  .skema-view {
+    padding: 12px;
+    gap: 10px;
+  }
+  .skema-header {
+    font-size: var(--font-xl);
+  }
+  .skema-row {
+    padding: 8px;
+  }
+  .team-pill {
+    min-width: 36px;
+    height: 24px;
+    font-size: calc(var(--font-sm) - 1px);
+  }
+  .info-pill {
+    padding: 6px 10px;
+    font-size: calc(var(--font-sm) - 1px);
+  }
+  .time-pill {
+    padding: 4px 8px;
+    font-size: calc(var(--font-sm) - 1px);
+  }
+}
+/* Utility color pills and small helpers */
+.pill {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.pill--primary {
+  background: #5b5fb1;
+  color: #ffffff;
+}
+
+.pill--muted {
+  background: rgba(255, 255, 255, 0.06);
+  color: #ffffff;
+}
+
+.pill--info {
+  background: #297ed2;
+  color: #ffffff;
+}
+
+.pill--warning {
+  background: #d1bb2e;
+  color: #ffffff;
+}
+
+.pill--danger {
+  background: #d92a2a;
+  color: #ffffff;
+}
+
+.text-muted {
+  color: #bab8b8;
 }
 
 /* You can add more imports for other components as needed */

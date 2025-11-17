@@ -18,10 +18,10 @@ export const DagensRetView = (days) => {
         // create a separate card for dagens ret under the clock
         const dagensCard = Div('dagens-card')
         const heading = Heading('Dagens Ret', 1)
-        heading.className = 'kantine-header'
+        heading.className = 'dagens-title'
         dagensCard.append(heading)
 
-        const placeholder = Paragraph('kantine-empty')
+        const placeholder = Paragraph('dagens-sub')
         placeholder.textContent = 'Kantinedata ikke tilgængelig i dag'
         dagensCard.append(placeholder)
 
@@ -44,16 +44,16 @@ export const DagensRetView = (days) => {
     // create a separate card for dagens ret below the clock
     const dagensCard = Div('dagens-card')
     const heading = Heading('Dagens Ret', 1)
-    heading.className = 'kantine-header'
+    heading.className = 'dagens-title'
     dagensCard.append(heading)
 
     days.forEach(day => {
         const retTitle = day.DayName.charAt(0).toUpperCase() + day.DayName.slice(1)
         const retHeader = Heading(retTitle, 3)
-        retHeader.className = 'kantine-day'
+        retHeader.className = 'dagens-day'
         dagensCard.append(retHeader)
 
-        const p = Paragraph('kantine-text')
+        const p = Paragraph('dagens-sub')
         p.textContent = day.Dish
         dagensCard.append(p)
     })
