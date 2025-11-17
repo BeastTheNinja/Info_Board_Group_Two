@@ -1,5 +1,6 @@
 import { Fragment, Paragraph, Heading, Div } from "../atoms/index.js"
 
+// Renders the left-column kantine view: clock + dagens-ret cards.
 export const DagensRetView = (days) => {
     const container = Fragment()
     // If no days are provided (API unreachable or no menu), render a small placeholder message

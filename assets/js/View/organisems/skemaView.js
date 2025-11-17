@@ -1,8 +1,10 @@
 import { realTime } from "../../utils/time.js"
 import { Div, Heading } from "../atoms/index.js"
 
+// Builds the inner skema list. Controllers create the outer `skema-view` wrapper.
 export const SkemaView = (arr) => {
-    const container = Div('skema-view')
+    // inner container (controller provides wrapper class)
+    const container = Div()
     const h1 = Heading('Skema', 1)
     const h2 = Heading('Hvad sker der i klasserne', 2)
     h1.className = 'skema-title'

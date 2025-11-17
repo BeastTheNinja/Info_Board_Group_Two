@@ -1,12 +1,8 @@
-// Lightweight fetch service for departures. Keeps a small in-memory cache
-// and exposes getDepartures(force) and fetchFresh() so controllers can call them.
-
+// Departures service: fetches nearby departures and provides an adaptive poll loop.
 const API_URL =
   "https://www.rejseplanen.dk/api/nearbyDepartureBoard?accessId=5b71ed68-7338-4589-8293-f81f0dc92cf2&originCoordLat=57.048731&originCoordLong=9.968186&format=json";
-// Normal (active) polling interval: 60 seconds
-export const DEFAULT_FETCH_INTERVAL = 60 * 1000; // 60 seconds
-// Slow interval for night/inactivity: 5 minutes
-export const SLOW_FETCH_INTERVAL = 5 * 60 * 1000; // 5 minutes
+export const DEFAULT_FETCH_INTERVAL = 60 * 1000; // active: 60s
+export const SLOW_FETCH_INTERVAL = 5 * 60 * 1000; // slow: 5m
 
 export const FETCH_INTERVAL =
   typeof window !== "undefined" && window.BUS_FETCH_INTERVAL
@@ -14,8 +10,7 @@ export const FETCH_INTERVAL =
     : DEFAULT_FETCH_INTERVAL;
 
 let cache = { ts: 0, data: [] };
-let serviceIntervalId = null; // legacy id (not used for timeout-loop)
-let serviceTimeoutId = null; // current setTimeout id for adaptive loop
+let serviceTimeoutId = null; // active timeout for the adaptive loop
 let serviceRunning = false;
 let currentIntervalMs = FETCH_INTERVAL;
 

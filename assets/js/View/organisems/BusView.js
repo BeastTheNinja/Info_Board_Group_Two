@@ -3,7 +3,8 @@ import { Div, Heading, Image, Paragraph, Ul, Li } from "../atoms/index.js";
 // BusView accepts an array of departure items and renders them.
 // Each item is expected to be an object with fields like stop, line, plannedDeparture, expectedDeparture, destination.
 export const BusView = (departures = []) => {
-    const element = Div('bus-view');
+    // The controller creates the outer `.bus-view` wrapper; keep this inner element classless
+    const element = Div();
 
     // Header
     const header = Div('bus-header');

@@ -1,3 +1,5 @@
+// Bus controller: creates a grid wrapper and renders departures.
+// The service handles polling; controller focuses on rendering and exposing debug helpers.
 import { BusView } from "../View/organisems/BusView.js";
 import { getDepartures, fetchFresh, startAutoRefresh, stopAutoRefresh } from "../services/fetch.js";
 
@@ -9,15 +11,17 @@ const renderToDOM = (departures) => {
     if (!root) {
         root = document.createElement('div');
         root.id = 'bus-root';
+        // make the wrapper the grid item by giving it the panel class
+        root.className = 'bus-view';
         app.appendChild(root);
     }
     // clear previous
     root.innerHTML = '';
     const view = BusView(departures);
+    // Ensure only the outer `root` carries the `.bus-view` grid class
+    if (view && view.classList && view.classList.contains('bus-view')) view.classList.remove('bus-view');
     root.appendChild(view);
 };
-
-// controller no longer manages intervals; service will handle auto-refresh
 
 export const BusPage = async (force = false) => {
     const app = document.getElementById('app');
@@ -28,6 +32,7 @@ export const BusPage = async (force = false) => {
     if (!root) {
         root = document.createElement('div');
         root.id = 'bus-root';
+        root.className = 'bus-view';
         app.appendChild(root);
     }
     root.innerHTML = '<div class="loading">Loading departures...</div>';
