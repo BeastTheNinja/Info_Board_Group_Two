@@ -55,6 +55,8 @@ export const SkemaPage = async () => {
         const finalData = [...finalMaks, ...fillRest].slice(0, 10)
 
         const view = SkemaView(finalData)
+        // Ensure we don't duplicate the panel/grid class on the inner view —
+        // the outer `root` created above is the grid item.
         if (view && view.classList && view.classList.contains('skema-view')) view.classList.remove('skema-view')
         root.appendChild(view)
     }

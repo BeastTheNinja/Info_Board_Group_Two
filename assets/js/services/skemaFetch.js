@@ -1,16 +1,15 @@
-// Skema fetch service with caching and adaptive polling
+// Skema service: cached fetch + adaptive polling (active 10min, slow 2h)
 const URL = 'https://iws.itcn.dk/techcollege/schedules?departmentCode=smed'
 
-// Active polling interval: 10 minutes
-export const DEFAULT_INTERVAL = 10 * 60 * 1000; // 10 minutes
-// Night/inactivity polling interval: 2 hours
-export const SLOW_INTERVAL = 2 * 60 * 60 * 1000; // 2 hours
+export const DEFAULT_INTERVAL = 10 * 60 * 1000; // active: 10min
+export const SLOW_INTERVAL = 2 * 60 * 60 * 1000; // slow: 2h
 
 let cache = { ts: 0, data: null };
 let timeoutId = null;
 let running = false;
 
 export async function fetchFreshSkema() {
+    // Network fetch; on failure return cached data (if any)
     try {
         const res = await fetch(URL);
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -19,7 +18,6 @@ export async function fetchFreshSkema() {
         return json;
     } catch (err) {
         console.warn('skema fetch failed', err);
-        // return cached data if available
         return cache.data;
     }
 }
@@ -55,6 +53,7 @@ export function startAutoRefresh(onUpdate) {
             console.warn('initial skema fetch failed', e);
         }
 
+        // adaptive loop: compute interval each tick and reschedule
         const loop = async () => {
             if (!running) return;
             const interval = computeInterval();
