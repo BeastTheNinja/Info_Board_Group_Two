@@ -3,14 +3,21 @@
 
 const API_URL =
   "https://www.rejseplanen.dk/api/nearbyDepartureBoard?accessId=5b71ed68-7338-4589-8293-f81f0dc92cf2&originCoordLat=57.048731&originCoordLong=9.968186&format=json";
-export const DEFAULT_FETCH_INTERVAL = 5 * 60 * 1000; // 5 minutes
+// Normal (active) polling interval: 60 seconds
+export const DEFAULT_FETCH_INTERVAL = 60 * 1000; // 60 seconds
+// Slow interval for night/inactivity: 5 minutes
+export const SLOW_FETCH_INTERVAL = 5 * 60 * 1000; // 5 minutes
+
 export const FETCH_INTERVAL =
   typeof window !== "undefined" && window.BUS_FETCH_INTERVAL
     ? window.BUS_FETCH_INTERVAL
     : DEFAULT_FETCH_INTERVAL;
 
 let cache = { ts: 0, data: [] };
-let serviceIntervalId = null;
+let serviceIntervalId = null; // legacy id (not used for timeout-loop)
+let serviceTimeoutId = null; // current setTimeout id for adaptive loop
+let serviceRunning = false;
+let currentIntervalMs = FETCH_INTERVAL;
 
 const mapRawToModel = (raw) => ({
   stop:
@@ -73,30 +80,99 @@ export async function getDepartures() {
 
 // Start periodic refresh inside the service. Calls `onUpdate(departures)` each time new data is fetched.
 export const startAutoRefresh = (onUpdate) => {
-  if (serviceIntervalId) return;
-  serviceIntervalId = setInterval(async () => {
+  if (serviceRunning) return;
+  serviceRunning = true;
+
+  const isNight = () => {
+    const h = new Date().getHours();
+    // consider night between 23:00-06:00
+    return h >= 23 || h < 6;
+  };
+
+  const computeInterval = () => {
+    // If document is hidden or it's night, slow down
+    if (typeof document !== "undefined" && document.visibilityState !== "visible")
+      return SLOW_FETCH_INTERVAL;
+    if (isNight()) return SLOW_FETCH_INTERVAL;
+    return DEFAULT_FETCH_INTERVAL;
+  };
+
+  // perform an immediate fetch and render
+  (async () => {
     try {
-      if (
-        typeof document !== "undefined" &&
-        document.visibilityState !== "visible"
-      )
-        return;
       const deps = await fetchFresh();
       if (typeof onUpdate === "function") onUpdate(deps);
     } catch (e) {
-      // swallow errors - controller can log if needed
-      console.warn("fetch service periodic refresh failed", e);
+      console.warn("initial fetch failed", e);
     }
-  }, FETCH_INTERVAL);
+    // start the adaptive loop
+    currentIntervalMs = computeInterval();
+    const loop = async () => {
+      if (!serviceRunning) return;
+      try {
+        // re-evaluate interval each tick
+        currentIntervalMs = computeInterval();
+        const deps = await fetchFresh();
+        if (typeof onUpdate === "function") onUpdate(deps);
+      } catch (e) {
+        console.warn("fetch service periodic refresh failed", e);
+      } finally {
+        // schedule next run with currentIntervalMs
+        serviceTimeoutId = setTimeout(loop, currentIntervalMs);
+      }
+    };
+    // schedule first loop tick
+    serviceTimeoutId = setTimeout(loop, currentIntervalMs);
+  })();
+
+  // Listen to visibility changes to speed up/slow down next ticks
+  if (typeof document !== "undefined") {
+    const onVisibility = () => {
+      // recompute interval and restart timeout so change takes effect immediately
+      if (serviceTimeoutId) clearTimeout(serviceTimeoutId);
+      currentIntervalMs = computeInterval();
+      serviceTimeoutId = setTimeout(async () => {
+        try {
+          const deps = await fetchFresh();
+          if (typeof onUpdate === "function") onUpdate(deps);
+        } catch (e) {
+          console.warn("fetch on visibility change failed", e);
+        }
+        // continue adaptive loop
+        if (serviceRunning) {
+          const loop = async () => {
+            if (!serviceRunning) return;
+            try {
+              currentIntervalMs = computeInterval();
+              const deps = await fetchFresh();
+              if (typeof onUpdate === "function") onUpdate(deps);
+            } catch (e) {
+              console.warn("fetch service periodic refresh failed", e);
+            } finally {
+              serviceTimeoutId = setTimeout(loop, currentIntervalMs);
+            }
+          };
+          serviceTimeoutId = setTimeout(loop, currentIntervalMs);
+        }
+      }, 0);
+    };
+    document.addEventListener("visibilitychange", onVisibility);
+    // store handler so we can remove it on stop
+    if (typeof window !== "undefined") window.__busVisibilityHandler = onVisibility;
+  }
   // expose id for debug
-  if (typeof window !== "undefined")
-    window.__busServiceIntervalId__ = serviceIntervalId;
+  if (typeof window !== "undefined") window.__busServiceIntervalId__ = serviceTimeoutId;
 };
 
 export const stopAutoRefresh = () => {
-  if (serviceIntervalId) {
-    clearInterval(serviceIntervalId);
-    serviceIntervalId = null;
-    if (typeof window !== "undefined") window.__busServiceIntervalId__ = null;
+  serviceRunning = false;
+  if (serviceTimeoutId) {
+    clearTimeout(serviceTimeoutId);
+    serviceTimeoutId = null;
   }
+  if (typeof document !== "undefined" && window.__busVisibilityHandler) {
+    document.removeEventListener("visibilitychange", window.__busVisibilityHandler);
+    window.__busVisibilityHandler = null;
+  }
+  if (typeof window !== "undefined") window.__busServiceIntervalId__ = null;
 };
