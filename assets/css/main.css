@@ -183,7 +183,7 @@ html, body {
   display: grid;
   grid-template-columns: 1fr 1.15fr 1fr;
   grid-template-rows: auto 1fr;
-  grid-template-areas: "kantine skema bus" "kantine skema bus";
+  grid-template-areas: "kantine vejr skema bus" "kantine vejr skema bus";
   gap: 16px 12px; /* slightly smaller gaps to reduce vertical footprint */
   align-items: start;
   height: 100%;
@@ -191,7 +191,8 @@ html, body {
 
 .skema-view,
 .bus-view,
-.clock-card {
+.clock-card,
+.vejr-view {
   background: #111d35;
   padding: 12px;
   border-radius: 12px;
@@ -207,6 +208,10 @@ html, body {
 .clock-card {
   max-width: 320px;
   align-self: flex-start; /* keep the small inner clock card pinned to the top */
+}
+
+.vejr-view {
+  grid-area: vejr;
 }
 
 .skema-view {

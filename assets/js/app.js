@@ -16,6 +16,6 @@ if (clockEl) clockEl.classList.add('clock-card');
 
 BusPage();
 
+vejrPage();
 SkemaPage()
 DagensRetPage();
-vejrPage();
