@@ -2,6 +2,7 @@ import { BusPage } from "./Controllers/busController.js";
 import { DagensRetPage } from "./Controllers/dagensRetController.js";
 import { dateAndTime } from "./Controllers/DateAndTimeController.js";
 import { SkemaPage } from "./Controllers/skemaController.js";
+import { vejrPage } from "./Controllers/vejrController.js";
 
 dateAndTime({
   elementId: "clock",
@@ -17,3 +18,4 @@ BusPage();
 
 SkemaPage()
 DagensRetPage();
+vejrPage();
