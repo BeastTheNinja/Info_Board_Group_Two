@@ -1,0 +1,104 @@
+// Bus-specific styles
+
+@use "../abstracts/variables" as vars;
+
+.bus-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.bus-logo {
+  width: 36px;
+  height: 36px;
+}
+
+.bus-header h2 {
+  color: vars.$color-accent;
+  font-size: 28px;
+  margin: 0;
+}
+
+.bus-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Keep long bus lists contained and scrollable */
+.bus-list {
+  max-height: 360px;
+  overflow: auto;
+  padding-right: 6px; /* space for scrollbar */
+}
+
+.bus-item {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.bus-item:hover {
+  transform: translateY(-3px);
+}
+
+.bus-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: vars.$box-bg;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.bus-stop {
+  font-weight: 700;
+  color: vars.$color-accent;
+}
+
+.bus-times {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  margin-left: 12px;
+  min-width: 80px;
+}
+
+.bus-departure {
+  background: vars.$color-info-dark;
+  color: vars.$color-text;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.bus-arrival {
+  background: vars.$color-info;
+  color: vars.$color-text-muted;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.bus-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.bus-line {
+  background: vars.$color-danger;
+  color: vars.$color-text;
+  padding: 6px 10px;
+  border-radius: 14px;
+  font-weight: 700;
+}
+
+.bus-destination {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 6px 10px;
+  border-radius: 10px;
+  color: vars.$color-text-muted;
+}

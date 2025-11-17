@@ -1,0 +1,95 @@
+// SCSS partial for Skema styles (mirrors important rules from assets/css/main.css)
+
+@use "../abstracts/variables" as vars;
+
+.skema-view {
+  background: vars.$color-bg;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.skema-title {
+  font-size: 22px;
+  text-align: center;
+  color: vars.$color-accent;
+  margin: 0 0 6px 0;
+}
+.skema-subtitle {
+  color: vars.$color-text-muted;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+/* Container for the list of skema items so long lists stay scrollable */
+.skema-view .skema-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 360px;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+.skema-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: vars.$box-bg;
+  margin: 6px 0;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+.skema-container {
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.skema-container:hover {
+  transform: translateY(-2px);
+}
+.lokale {
+  background: vars.$color-success;
+  color: vars.$color-text;
+  padding: 4px 6px;
+  border-radius: 6px;
+  min-width: 44px;
+  text-align: center;
+  font-weight: 700;
+}
+.team-name {
+  padding: 4px 6px;
+  border-radius: 14px;
+  min-width: 56px;
+  text-align: center;
+  font-weight: 700;
+}
+.time {
+  padding: 4px 8px;
+  border-radius: 8px;
+  min-width: 56px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* Team pills */
+.team-pill {
+  display: inline-block;
+  padding: 3px 6px;
+  border-radius: 14px;
+  font-weight: 700;
+  color: vars.$color-text;
+}
+.team-default {
+  background: vars.$color-accent;
+  color: vars.$color-text;
+}
+.team-red {
+  background: vars.$color-danger;
+  color: vars.$color-text;
+}
+.team-blue {
+  background: vars.$color-info;
+  color: vars.$color-text;
+}
+.team-yellow {
+  background: vars.$color-success;
+  color: vars.$color-text;
+}

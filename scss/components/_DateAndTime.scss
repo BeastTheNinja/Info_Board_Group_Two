@@ -1,38 +1,50 @@
-@use '../abstracts/variables' as *;
+// Date & Time styles
 
-#clock {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 2rem;
-  padding-left: 5rem;    // Moved slightly more right
-  padding-top: 3rem;     // Moved down
-  background-color: $color-bg;
-  
+@use "../abstracts/variables" as vars;
+
+#clock{
+  max-width:320px;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  color: vars.$color-accent;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.6) inset, 0 6px 20px rgba(0,0,0,0.6);
+  font-weight:700;
+  margin: 0; /* layout grid gap handles spacing */
 }
-    
-    svg {
-      width: 50px;
-      height: 50px;
-      stroke: $color-neutral-light;
-      stroke-width: 6;
-      fill: none;
-    }
 
-  .timePart {
-    font-size: 4rem;
-    font-weight: 900;
-    color: $color-accent;
-    letter-spacing: 0.25rem;
-    line-height: 1;
-  }
+#clock .time-part{
+  font-size:2.2rem;
+  color: vars.$color-accent;
+  font-weight:800;
+  line-height:1;
+  margin: 0;
+}
 
+#clock .date-part{
+  font-size:1rem;
+  color: vars.$color-highlight;
+  margin-top:4px;
+}
 
-  .datePart {
-    font-size: 2.5rem;
-    font-weight: 900;
-    color: $color-warning;
-    letter-spacing: 0.25rem;
-  }
+/* When the clock is embedded inside the kantine card we want it to visually
+   belong to that card (no separate background or shadow). Use a small
+   inline area for the time and date. */
+.kantine-view .clock-embedded {
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;
+  max-width: 100%;
+}
+
+.kantine-view .clock-embedded .time-part{
+  font-size:2.4rem; /* a little larger than normal but within the left card */
+  margin: 0 0 6px 0;
+}
+
+.kantine-view .clock-embedded .date-part{
+  font-size:0.95rem;
+  margin-top:2px;
+}
