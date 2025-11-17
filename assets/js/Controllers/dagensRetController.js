@@ -1,3 +1,4 @@
+// DagensRet controller: render today's and tomorrow's menu and subscribe to updates.
 import { hentRet, startAutoRefresh, stopAutoRefresh, fetchNow, fetchFreshNow } from "../services/kantineFetch.js"
 import { DagensRetView } from "../View/organisems/DagensRetView.js"
 
@@ -23,23 +24,21 @@ export const DagensRetPage = async () => {
         const days = rawData.Days
         const daysToShow = getTodayAndTomorrow(days)
         const fragment = DagensRetView(daysToShow)
-        // DagensRetView returns a fragment containing the `.kantine-view` div as first child
+        // replace existing kantine view or append
         const newEl = fragment.firstElementChild || fragment
-
         const existing = app.querySelector('.kantine-view')
         if (existing) existing.replaceWith(newEl)
         else app.append(newEl)
     }
 
-    // initial render with cached/fresh data
+    // initial render (cached or fetched)
     try {
         const data = await hentRet()
         if (data) renderToDOM(data)
     } catch (e) {
         console.warn('Initial kantine load failed', e)
     }
-
-    // start background scheduler; it will call renderToDOM when new data is fetched
+    // subscribe to scheduled updates (scheduler calls renderToDOM)
     startAutoRefresh((d) => {
         try {
             if (d) renderToDOM(d)
@@ -50,7 +49,7 @@ export const DagensRetPage = async () => {
 
     // expose manual controls for debugging
     window.refreshKantine = async (force = false) => {
-        // force=true bypasses cache and always fetches from network
+        // pass true to force a fresh network fetch
         const fresh = force ? await fetchFreshNow() : await fetchNow()
         if (fresh) renderToDOM(fresh)
         return fresh
