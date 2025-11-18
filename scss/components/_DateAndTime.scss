@@ -6,7 +6,7 @@
 .clock-card {
 	@include mixins.panel(18px, 12px);
 	width: 100%;
-	max-width: 360px;
+	max-width: none; /* allow clock to use available panel width */
 	color: vars.$color-accent;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .clock-time {
-	font-size: 2.6rem;
+	font-size: var(--font-xxl);
 	font-weight: 900;
 	line-height: 1;
 	color: vars.$color-accent;
@@ -30,10 +30,10 @@
 
 /* Embedded clock variant for the kantine left column */
 .clock-embedded { background: transparent; box-shadow: none; padding: 0; }
-.clock-embedded .clock-time { font-size: 2.2rem; }
+.clock-embedded .clock-time { font-size: var(--font-xl); }
 
 @media (max-width: vars.$bp-md) {
-	.clock-time { font-size: 1.9rem; }
-	.clock-embedded .clock-time { font-size: 1.6rem; }
+	.clock-time { font-size: var(--font-xl); }
+	.clock-embedded .clock-time { font-size: var(--font-lg); }
 }
 

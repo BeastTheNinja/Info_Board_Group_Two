@@ -24,23 +24,22 @@ html, body {
 
 .container {
 	height: 100vh;
-	max-width: 2000px;
-	margin: 0 auto;
-	padding: 16px;
+	width: 100%;
+	max-width: none; /* allow full-bleed on very large displays */
+	margin: 0;
+	padding: 0; /* remove outer padding so panels reach the browser edges */
 	overflow: hidden;
 }
 
 #app {
 	height: 100%;
 	display: grid;
-	/* tighten the center column and slightly reduce right column to match reference */
+	/* three-column layout that fills the full available height */
 	grid-template-columns: 1fr 1.25fr 0.95fr;
-	grid-template-rows: auto 1fr;
-	grid-template-areas: 
-		"kantine skema bus"
-		"kantine skema bus";
+	grid-template-rows: 1fr; /* single row that stretches */
+	grid-template-areas: "kantine skema bus";
 	gap: 22px;
-	align-items: start;
+	align-items: stretch;
 	min-height: 0;
 }
 
@@ -51,6 +50,8 @@ html, body {
 	flex-direction: column;
 	gap: 12px;
 	min-height: 0;
+	height: 100%; /* ensure panel fills its grid area vertically */
+  font-size: var(--font-base); /* scale inner text by root font vars */
 }
 
 .kantine-view { grid-area: kantine; }
@@ -61,7 +62,7 @@ html, body {
 #app, .container, .kantine-view, .skema-view, .bus-view { min-height: 0; min-width: 0; }
 
 /* Helper: lists should flex but not force the page to scroll */
-.flex-list { display: flex; flex-direction: column; gap: 10px; flex: 1 1 auto; min-height: 0; overflow: hidden; }
+.flex-list { display: flex; flex-direction: column; gap: 10px; flex: 1 1 auto; min-height: 0; overflow: auto; }
 
 /* Responsive: collapse to single column on narrow viewports */
 @media (max-width: vars.$bp-md) {
@@ -76,5 +77,37 @@ html, body {
 	#app { grid-template-columns: 1fr; grid-template-rows: auto auto auto; grid-template-areas: "kantine" "skema" "bus"; gap: 12px; }
 	.container { padding: 8px; }
 	.panel { padding: 10px; border-radius: 10px; }
+}
+
+/* 4K scaling: upscale typography, paddings and gaps for very large screens */
+@include mixins.bp-up(vars.$bp-4k) {
+	:root {
+		--font-sm: 16px;
+		--font-base: 18px;
+		--font-md: 20px;
+		--font-lg: 28px;
+		--font-xl: 36px;
+		--font-xxl: 48px;
+	}
+
+	.container {
+		max-width: none;
+		padding: 36px; /* keep some inner breathing room on very large screens */
+	}
+
+	/* scale base font-size on 4K so rems grow where used */
+	html { font-size: 112.5%; }
+
+	#app {
+		gap: 38px;
+		grid-template-columns: 1.1fr 1.6fr 1fr; /* give center more room on 4k */
+	}
+
+	.panel {
+		@include mixins.panel(28px, 18px);
+		gap: 18px;
+	}
+
+	.flex-list { gap: 16px; }
 }
 
