@@ -57,7 +57,7 @@ export async function fetchFresh() {
     raw = arrays.length ? arrays[0] : [];
   }
 
-  const departures = raw.map(mapRawToModel).slice(0, 4); // limit to 4 items
+  const departures = raw.map(mapRawToModel).slice(0, 9);
   cache = { ts: Date.now(), data: departures };
   return departures;
 }

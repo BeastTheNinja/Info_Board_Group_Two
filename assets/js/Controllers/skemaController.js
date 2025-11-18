@@ -50,8 +50,8 @@ export const SkemaPage = async () => {
 
          const fillRest = sortedData.filter((item) => !finalMaks.includes(item))
 
-        const finalData = [...finalMaks, ...fillRest].slice(0, 11)
-
+        const finalData = [...finalMaks, ...fillRest].slice(0, 12)
+        
         const view = SkemaView(finalData)
         // Ensure we don't duplicate the panel/grid class on the inner view —
         // the outer `root` created above is the grid item.
