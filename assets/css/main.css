@@ -397,24 +397,6 @@ body {
   align-items: stretch;
 }
 
-.bus-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.bus-header h2 {
-  margin: 0;
-  color: #5b5fb1;
-  font-size: var(--font-xxl);
-  font-weight: 900;
-}
-
-.bus-logo {
-  width: 36px;
-  height: 36px;
-}
-
 .bus-list {
   display: flex;
   flex-direction: column;
@@ -502,40 +484,46 @@ body {
     font-size: var(--font-xl);
   }
 }
-@media (min-width: 3840px) {
-  .bus-list {
-    padding: 14px;
-  }
-  .bus-item {
-    padding: 18px 22px;
-    gap: 20px;
-  }
-  /* Increase header, logo and text sizes for readability on 4K displays */
-  .bus-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .bus-header h2 {
-    font-size: 150px;
-  }
-  .bus-logo {
-    width: 150px;
-    height: 150px;
-  }
-  .bus-departure {
-    padding: 1.1em 1.6em;
-    font-size: 36px;
-    min-width: 96px;
-  }
-  .bus-stop {
-    font-size: 100px;
-  }
-  /* Make destination and other meta text larger and readable on 4K */
-  .bus-destination {
-    font-size: 50px;
-  }
+.bus-list {
+  padding: 14px;
 }
+
+.bus-item {
+  padding: 18px 22px;
+  gap: 20px;
+}
+
+/* Increase header, logo and text sizes for readability on 4K displays */
+.bus-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.bus-header h2 {
+  font-size: 150px;
+}
+
+.bus-logo {
+  width: 150px;
+  height: 150px;
+}
+
+.bus-departure {
+  padding: 1.1em 1.6em;
+  font-size: 36px;
+  min-width: 96px;
+}
+
+.bus-stop {
+  font-size: 100px;
+}
+
+/* Make destination and other meta text larger and readable on 4K */
+.bus-destination {
+  font-size: 50px;
+}
+
 .kantine-view {
   display: flex;
   flex-direction: column;

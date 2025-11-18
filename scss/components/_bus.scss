@@ -9,22 +9,6 @@
   align-items: stretch;
 }
 
-.bus-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.bus-header h2 {
-  margin: 0;
-  color: vars.$color-accent;
-  font-size: var(--font-xxl);
-  font-weight: 900;
-}
-.bus-logo {
-  width: 36px;
-  height: 36px;
-}
-
 .bus-list {
   display: flex;
   flex-direction: column;
@@ -106,9 +90,7 @@
     font-size: var(--font-xl);
   }
 }
-
-@include mixins.bp-up(vars.$bp-4k) {
-  .bus-list {
+.bus-list {
     padding: 14px;
   }
   .bus-item {
@@ -140,4 +122,3 @@
   .bus-destination {
     font-size: 50px;
   }
-}
