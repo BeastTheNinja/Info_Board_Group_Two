@@ -182,21 +182,22 @@ html, body {
 
 .container {
   height: 100vh;
-  max-width: 2000px;
-  margin: 0 auto;
-  padding: 16px;
+  width: 100%;
+  max-width: none; /* allow full-bleed on very large displays */
+  margin: 0;
+  padding: 0; /* remove outer padding so panels reach the browser edges */
   overflow: hidden;
 }
 
 #app {
   height: 100%;
   display: grid;
-  /* tighten the center column and slightly reduce right column to match reference */
+  /* three-column layout that fills the full available height */
   grid-template-columns: 1fr 1.25fr 0.95fr;
-  grid-template-rows: auto 1fr;
-  grid-template-areas: "kantine skema bus" "kantine skema bus";
+  grid-template-rows: 1fr; /* single row that stretches */
+  grid-template-areas: "kantine skema bus";
   gap: 22px;
-  align-items: start;
+  align-items: stretch;
   min-height: 0;
 }
 
@@ -211,6 +212,8 @@ html, body {
   flex-direction: column;
   gap: 12px;
   min-height: 0;
+  height: 100%; /* ensure panel fills its grid area vertically */
+  font-size: var(--font-base); /* scale inner text by root font vars */
 }
 
 .kantine-view {
@@ -238,7 +241,7 @@ html, body {
   gap: 10px;
   flex: 1 1 auto;
   min-height: 0;
-  overflow: hidden;
+  overflow: auto;
 }
 
 /* Responsive: collapse to single column on narrow viewports */
@@ -265,6 +268,40 @@ html, body {
     border-radius: 10px;
   }
 }
+/* 4K scaling: upscale typography, paddings and gaps for very large screens */
+@media (min-width: 3840px) {
+  :root {
+    --font-sm: 16px;
+    --font-base: 18px;
+    --font-md: 20px;
+    --font-lg: 28px;
+    --font-xl: 36px;
+    --font-xxl: 48px;
+  }
+  .container {
+    max-width: none;
+    padding: 36px; /* keep some inner breathing room on very large screens */
+  }
+  /* scale base font-size on 4K so rems grow where used */
+  html {
+    font-size: 112.5%;
+  }
+  #app {
+    gap: 38px;
+    grid-template-columns: 1.1fr 1.6fr 1fr; /* give center more room on 4k */
+  }
+  .panel {
+    background: #111d35;
+    color: #ffffff;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    gap: 18px;
+  }
+  .flex-list {
+    gap: 16px;
+  }
+}
 .clock-card {
   background: #111d35;
   color: #ffffff;
@@ -272,7 +309,7 @@ html, body {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   width: 100%;
-  max-width: 360px;
+  max-width: none; /* allow clock to use available panel width */
   color: #5b5fb1;
 }
 
@@ -283,7 +320,7 @@ html, body {
 }
 
 .clock-time {
-  font-size: 2.6rem;
+  font-size: var(--font-xxl);
   font-weight: 900;
   line-height: 1;
   color: #5b5fb1;
@@ -302,15 +339,43 @@ html, body {
 }
 
 .clock-embedded .clock-time {
-  font-size: 2.2rem;
+  font-size: var(--font-xl);
 }
 
 @media (max-width: 1000px) {
   .clock-time {
-    font-size: 1.9rem;
+    font-size: var(--font-xl);
   }
   .clock-embedded .clock-time {
-    font-size: 1.6rem;
+    font-size: var(--font-lg);
+  }
+}
+/* Upscale Date & Time for very large / 4K displays */
+@media (min-width: 3840px) {
+  .clock-card {
+    /* increase panel padding and breathing room */
+    padding: 36px;
+    border-radius: 18px;
+  }
+  .clock-inner {
+    gap: 14px;
+  }
+  /* Make the main time much larger on 4K */
+  .clock-time {
+    /* large, fixed size for legibility on 4K TVs */
+    font-size: 200px;
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -1px;
+  }
+  .clock-date {
+    font-size: 56px;
+  }
+  .clock-embedded {
+    padding: 8px;
+  }
+  .clock-embedded .clock-time {
+    font-size: 120px;
   }
 }
 .bus-view {
@@ -322,6 +387,7 @@ html, body {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  align-items: stretch;
 }
 
 .bus-header {
@@ -348,18 +414,20 @@ html, body {
   gap: 12px;
   flex: 1 1 auto;
   min-height: 0;
-  overflow: hidden;
+  overflow: auto;
+  padding: 8px;
 }
 
 .bus-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr minmax(88px, min-content);
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 14px;
+  gap: 16px;
+  padding: 14px 16px;
   border-radius: 12px;
   background: rgba(0, 0, 0, 0.04);
   transition: transform 0.12s ease, box-shadow 0.12s ease;
+  width: 100%;
 }
 
 .bus-item:hover {
@@ -370,6 +438,8 @@ html, body {
 .bus-stop {
   font-weight: 800;
   color: #5b5fb1;
+  font-size: var(--font-md);
+  text-align: left;
 }
 
 .bus-times {
@@ -377,24 +447,28 @@ html, body {
   flex-direction: column;
   align-items: flex-end;
   gap: 6px;
-  min-width: 64px;
+  min-width: 88px;
 }
 
 .bus-departure {
   background: #297ed2;
   color: #ffffff;
-  padding: 8px 12px;
+  padding: 0.6em 1em;
   border-radius: 10px;
   font-weight: 900;
+  font-size: var(--font-md);
   box-shadow: 0 6px 14px rgba(47, 88, 255, 0.18);
+  text-align: center;
+  min-width: 72px;
 }
 
 .bus-arrival {
   background: rgba(255, 255, 255, 0.06);
   color: #bab8b8;
-  padding: 6px 10px;
+  padding: 0.45em 0.7em;
   border-radius: 8px;
   font-size: var(--font-sm);
+  text-align: center;
 }
 
 .bus-line {
@@ -419,6 +493,25 @@ html, body {
   }
   .bus-header h2 {
     font-size: var(--font-xl);
+  }
+}
+@media (min-width: 3840px) {
+  .bus-list {
+    padding: 14px;
+  }
+  .bus-item {
+    padding: 18px 22px;
+    gap: 20px;
+  }
+  .bus-header h2 {
+    font-size: calc(var(--font-xxl));
+  }
+  .bus-departure {
+    padding: 0.9em 1.2em;
+    font-size: calc(var(--font-lg));
+  }
+  .bus-stop {
+    font-size: calc(var(--font-lg));
   }
 }
 .kantine-view {
@@ -473,6 +566,34 @@ html, body {
     padding: 10px;
   }
 }
+/* 4K scaling for the kantine (left column) so clock + dagens-ret are readable */
+@media (min-width: 3840px) {
+  .dagens-card {
+    background: #111d35;
+    color: #ffffff;
+    padding: 36px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
+  }
+  .dagens-title {
+    font-size: 96px; /* larger heading on 4K to match Date/Time readability */
+    letter-spacing: 0.6px;
+  }
+  .dagens-sub {
+    font-size: 56px;
+  }
+  .dagens-list {
+    gap: 14px;
+  }
+  .dagens-item {
+    gap: 8px;
+  }
+  /* Make the day label as large as the sub text (matches clock date sizing) */
+  .dagens-day {
+    font-size: 56px;
+  }
+}
 /* SKEMA panel - central column */
 .skema-view {
   background: #111d35;
@@ -482,8 +603,9 @@ html, body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  align-items: center;
+  gap: 18px; /* slightly larger gap so content breathes */
+  align-items: stretch;
+  padding: 22px; /* fill more of the panel area */
 }
 
 .skema-header {
@@ -507,22 +629,24 @@ html, body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px; /* more gap between rows for clarity */
   flex: 1 1 auto;
   min-height: 0;
-  overflow: hidden;
-  /* narrower centered column inside the panel to match udklip.png */
-  max-width: 520px;
-  margin: 0 auto;
+  overflow: auto; /* allow internal scrolling when content overflows */
+  max-width: none; /* allow the skema list to expand full-bleed */
+  margin: 0; /* fill the panel width */
+  padding: 8px 10px; /* breathing room inside list */
 }
 
 /* Each row: a dark rounded bar containing small colored team pill, white info pill, and time */
 .skema-row {
-  display: flex;
+  display: grid;
+  /* columns: locale | team | subject (grows) | time */
+  grid-template-columns: minmax(44px, 64px) minmax(56px, 96px) 1fr minmax(64px, 96px);
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px 14px;
   border-radius: 12px;
   background: rgba(2, 8, 22, 0.28); /* slightly darker bar */
   transition: transform 0.12s ease, box-shadow 0.12s ease;
@@ -533,13 +657,13 @@ html, body {
   box-shadow: 0 8px 18px rgba(2, 6, 23, 0.5);
 }
 
-.team-pill {
-  min-width: 44px;
-  height: 28px;
-  padding: 4px 10px;
-  border-radius: 8px;
+team-pill {
+  min-width: 64px;
+  height: 36px;
+  padding: 0.4em 0.9em;
+  border-radius: 10px;
   font-weight: 900;
-  font-size: var(--font-sm);
+  font-size: calc(var(--font-md));
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -565,26 +689,33 @@ html, body {
 .lokale-pill {
   background: rgba(255, 255, 255, 0.04);
   color: #ffffff;
-  padding: 6px 8px;
+  padding: 0.45em 0.6em;
   border-radius: 8px;
   font-weight: 800;
-  font-size: calc(var(--font-sm) - 1px);
+  font-size: calc(var(--font-sm));
   min-width: 44px;
   text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Subject pill - light rounded chip showing subject name */
 .subject-pill {
   background: #d9d9d9;
   color: #0b1626;
-  padding: 8px 12px;
+  padding: 0.6em 1em;
   border-radius: 999px;
   font-weight: 800;
   font-size: var(--font-sm);
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-left: 6px;
+  gap: 0.6em;
+  margin: 0; /* grid places it correctly */
+  justify-self: center; /* center inside its grid column */
+  width: 100%;
+  max-width: 720px; /* don't let it grow excessively */
+  justify-content: center; /* center pill content */
 }
 
 /* Subject color variants */
@@ -650,12 +781,12 @@ html, body {
 .info-pill {
   background: #d9d9d9;
   color: #0b1626;
-  padding: 8px 14px;
+  padding: 0.6em 1em;
   border-radius: 999px;
   font-weight: 800;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.6em;
   box-shadow: 0 2px 0 rgba(0, 0, 0, 0.04);
 }
 
@@ -665,13 +796,15 @@ html, body {
 }
 
 .time-pill {
-  margin-left: auto;
   background: rgba(255, 255, 255, 0.06);
   color: #bab8b8;
-  padding: 6px 10px;
+  padding: 0.6em 0.9em;
   border-radius: 8px;
   font-weight: 800;
-  font-size: var(--font-sm);
+  font-size: var(--font-md);
+  text-align: center;
+  justify-self: end; /* keep time aligned to the right column */
+  min-width: 72px; /* consistent width so times align */
 }
 
 @media (max-width: 1000px) {
@@ -691,12 +824,37 @@ html, body {
     font-size: calc(var(--font-sm) - 1px);
   }
   .info-pill {
-    padding: 6px 10px;
+    padding: 0.4em 0.6em;
     font-size: calc(var(--font-sm) - 1px);
   }
   .time-pill {
-    padding: 4px 8px;
+    padding: 0.35em 0.5em;
     font-size: calc(var(--font-sm) - 1px);
+  }
+}
+/* 4K tweaks: allow wider central skema list and larger paddings */
+@media (min-width: 3840px) {
+  .skema-list {
+    max-width: none;
+    padding: 18px 22px;
+  }
+  .skema-row {
+    padding: 20px 26px;
+    grid-template-columns: minmax(56px, 84px) minmax(72px, 120px) 1fr minmax(84px, 120px);
+  }
+  .team-pill {
+    min-width: 84px;
+    height: 48px;
+    font-size: calc(var(--font-lg));
+  }
+  .subject-pill, .info-pill {
+    padding: 1em 1.25em;
+    font-size: calc(var(--font-lg));
+  }
+  .time-pill {
+    padding: 0.9em 1.2em;
+    font-size: calc(var(--font-lg));
+    min-width: 96px;
   }
 }
 /* Utility color pills and small helpers */

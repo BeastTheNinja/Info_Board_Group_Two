@@ -6,8 +6,9 @@
 	@include mixins.panel(20px, 16px);
 	display: flex;
 	flex-direction: column;
-	gap: 14px;
-	align-items: center;
+	gap: 18px; /* slightly larger gap so content breathes */
+	align-items: stretch;
+	padding: 22px; /* fill more of the panel area */
 }
 
 .skema-header {
@@ -30,35 +31,37 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
+	gap: 16px; /* more gap between rows for clarity */
 	flex: 1 1 auto;
 	min-height: 0;
-	overflow: hidden;
-	/* narrower centered column inside the panel to match udklip.png */
-	max-width: 520px;
-	margin: 0 auto;
+	overflow: auto; /* allow internal scrolling when content overflows */
+	max-width: none; /* allow the skema list to expand full-bleed */
+	margin: 0; /* fill the panel width */
+	padding: 8px 10px; /* breathing room inside list */
 }
 
 /* Each row: a dark rounded bar containing small colored team pill, white info pill, and time */
 .skema-row {
-	display: flex;
+	display: grid;
+	/* columns: locale | team | subject (grows) | time */
+	grid-template-columns: minmax(44px, 64px) minmax(56px, 96px) 1fr minmax(64px, 96px);
 	align-items: center;
-	gap: 12px;
+	gap: 14px;
 	width: 100%;
-	padding: 10px 12px;
+	padding: 12px 14px;
 	border-radius: 12px;
 	background: rgba(2,8,22,0.28); /* slightly darker bar */
 	transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 .skema-row:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(2,6,23,0.5); }
 
-.team-pill {
-	min-width: 44px;
-	height: 28px;
-	padding: 4px 10px;
-	border-radius: 8px;
+team-pill {
+	min-width: 64px;
+	height: 36px;
+	padding: 0.4em 0.9em;
+	border-radius: 10px;
 	font-weight: 900;
-	font-size: var(--font-sm);
+	font-size: calc(var(--font-md));
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -72,26 +75,33 @@
 .lokale-pill {
 	background: rgba(255,255,255,0.04);
 	color: vars.$color-text;
-	padding: 6px 8px;
+	padding: 0.45em 0.6em;
 	border-radius: 8px;
 	font-weight: 800;
-	font-size: calc(var(--font-sm) - 1px);
+	font-size: calc(var(--font-sm));
 	min-width: 44px;
 	text-align: center;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 }
 
 /* Subject pill - light rounded chip showing subject name */
 .subject-pill {
 	background: vars.$color-neutral-light;
 	color: #0b1626;
-	padding: 8px 12px;
+	padding: 0.6em 1em;
 	border-radius: 999px;
 	font-weight: 800;
 	font-size: var(--font-sm);
 	display: inline-flex;
 	align-items: center;
-	gap: 8px;
-	margin-left: 6px;
+	gap: 0.6em;
+	margin: 0; /* grid places it correctly */
+	justify-self: center; /* center inside its grid column */
+	width: 100%;
+	max-width: 720px; /* don't let it grow excessively */
+	justify-content: center; /* center pill content */
 }
 
 /* Subject color variants */
@@ -112,25 +122,27 @@
 .info-pill {
 	background: vars.$color-neutral-light;
 	color: #0b1626;
-	padding: 8px 14px;
+	padding: 0.6em 1em;
 	border-radius: 999px;
 	font-weight: 800;
 	display: inline-flex;
 	align-items: center;
-	gap: 10px;
+	gap: 0.6em;
 	box-shadow: 0 2px 0 rgba(0,0,0,0.04);
 }
 
 .skema-subinfo { color: vars.$color-text-muted; font-size: var(--font-sm); }
 
 .time-pill {
-	margin-left: auto;
 	background: rgba(255,255,255,0.06);
 	color: vars.$color-text-muted;
-	padding: 6px 10px;
+	padding: 0.6em 0.9em;
 	border-radius: 8px;
 	font-weight: 800;
-	font-size: var(--font-sm);
+	font-size: var(--font-md);
+	text-align: center;
+	justify-self: end; /* keep time aligned to the right column */
+	min-width: 72px; /* consistent width so times align */
 }
 
 @media (max-width: vars.$bp-md) {
@@ -138,7 +150,16 @@
 	.skema-header { font-size: var(--font-xl); }
 	.skema-row { padding: 8px; }
 	.team-pill { min-width: 36px; height: 24px; font-size: calc(var(--font-sm) - 1px); }
-	.info-pill { padding: 6px 10px; font-size: calc(var(--font-sm) - 1px); }
-	.time-pill { padding: 4px 8px; font-size: calc(var(--font-sm) - 1px); }
+	.info-pill { padding: 0.4em 0.6em; font-size: calc(var(--font-sm) - 1px); }
+	.time-pill { padding: 0.35em 0.5em; font-size: calc(var(--font-sm) - 1px); }
+}
+
+/* 4K tweaks: allow wider central skema list and larger paddings */
+@include mixins.bp-up(vars.$bp-4k) {
+	.skema-list { max-width: none; padding: 18px 22px; }
+	.skema-row { padding: 20px 26px; grid-template-columns: minmax(56px, 84px) minmax(72px, 120px) 1fr minmax(84px, 120px); }
+	.team-pill { min-width: 84px; height: 48px; font-size: calc(var(--font-lg)); }
+	.subject-pill, .info-pill { padding: 1em 1.25em; font-size: calc(var(--font-lg)); }
+	.time-pill { padding: 0.9em 1.2em; font-size: calc(var(--font-lg)); min-width: 96px; }
 }
 

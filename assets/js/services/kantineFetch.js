@@ -47,15 +47,15 @@ export const fetchFreshNow = async () => {
     }
 }
 
-// Schedule weekday 00:01 fresh fetches.
+// Schedule weekday 07:00 fresh fetches.
 let kantineTimeoutId = null
 let kantineRunning = false
 
 const computeNextWeekdayMidnightOne = () => {
     const now = new Date()
     const candidate = new Date(now)
-    // schedule at 00:01 (one minute past midnight)
-    candidate.setHours(0, 1, 0, 0)
+    // schedule at 07:00 (seven o'clock in the morning)
+    candidate.setHours(7, 0, 0, 0)
 
     const isWeekday = (d) => d.getDay() >= 1 && d.getDay() <= 5
 
@@ -84,7 +84,7 @@ const scheduleNextRun = async (onUpdate) => {
     }, Math.max(0, delay))
 }
 
-// Start the kantine auto-refresh; will run at next weekday 05:00 and repeat at subsequent weekday 05:00 times.
+// Start the kantine auto-refresh; will run at next weekday 07:00 and repeat at subsequent weekday 07:00 times.
 export const startAutoRefresh = (onUpdate) => {
     if (kantineRunning) return
     kantineRunning = true

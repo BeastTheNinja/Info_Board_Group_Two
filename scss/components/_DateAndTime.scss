@@ -6,7 +6,7 @@
 .clock-card {
 	@include mixins.panel(18px, 12px);
 	width: 100%;
-	max-width: 360px;
+	max-width: none; /* allow clock to use available panel width */
 	color: vars.$color-accent;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .clock-time {
-	font-size: 2.6rem;
+	font-size: var(--font-xxl);
 	font-weight: 900;
 	line-height: 1;
 	color: vars.$color-accent;
@@ -30,10 +30,37 @@
 
 /* Embedded clock variant for the kantine left column */
 .clock-embedded { background: transparent; box-shadow: none; padding: 0; }
-.clock-embedded .clock-time { font-size: 2.2rem; }
+.clock-embedded .clock-time { font-size: var(--font-xl); }
 
 @media (max-width: vars.$bp-md) {
-	.clock-time { font-size: 1.9rem; }
-	.clock-embedded .clock-time { font-size: 1.6rem; }
+	.clock-time { font-size: var(--font-xl); }
+	.clock-embedded .clock-time { font-size: var(--font-lg); }
+}
+
+/* Upscale Date & Time for very large / 4K displays */
+@include mixins.bp-up(vars.$bp-4k) {
+	.clock-card {
+		/* increase panel padding and breathing room */
+		padding: 36px;
+		border-radius: 18px;
+	}
+
+	.clock-inner { gap: 14px; }
+
+	/* Make the main time much larger on 4K */
+	.clock-time {
+		/* large, fixed size for legibility on 4K TVs */
+		font-size: 200px;
+		font-weight: 900;
+		line-height: 0.95;
+		letter-spacing: -1px;
+	}
+
+	.clock-date {
+		font-size: 56px;
+	}
+
+	.clock-embedded { padding: 8px; }
+	.clock-embedded .clock-time { font-size: 120px; }
 }
 

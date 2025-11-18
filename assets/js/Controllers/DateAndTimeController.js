@@ -9,11 +9,14 @@ export function dateAndTime({
       return;
     }
   
-    // Create inner elements for time and date (use classes so CSS controls styling)
-      el.innerHTML = `
-        <div id="timePart" class="time-part"></div>
-        <div id="datePart" class="date-part"></div>
-      `;
+    // Create inner elements for time and date. Include the CSS-friendly
+    // class names `clock-time` and `clock-date` so the styles in
+    // `_DateAndTime.scss` apply directly (keeps the existing `time-part`
+    // / `date-part` names for compatibility).
+        el.innerHTML = `
+          <div id="timePart" class="time-part clock-time"></div>
+          <div id="datePart" class="date-part clock-date"></div>
+        `;
   
     const timeEl = el.querySelector("#timePart");
     const dateEl = el.querySelector("#datePart");

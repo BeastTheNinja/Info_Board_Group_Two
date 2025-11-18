@@ -25,3 +25,16 @@
 	clip: rect(1px, 1px, 1px, 1px);
 	white-space: nowrap;
 }
+
+// Breakpoint helpers
+@mixin bp-up($size) {
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+@mixin bp-down($size) {
+  @media (max-width: $size) {
+    @content;
+  }
+}
