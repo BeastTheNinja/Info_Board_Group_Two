@@ -48,11 +48,9 @@ export const SkemaPage = async () => {
 
         const finalMaks = Array.from(maksPerTeam.values())
 
-        const fillRest = sortedData.filter(
-            (item) => !finalMaks.some((t) => t.Team === item.Team)
-        )
+         const fillRest = sortedData.filter((item) => !finalMaks.includes(item))
 
-        const finalData = [...finalMaks, ...fillRest].slice(0, 10)
+        const finalData = [...finalMaks, ...fillRest].slice(0, 11)
 
         const view = SkemaView(finalData)
         // Ensure we don't duplicate the panel/grid class on the inner view —
