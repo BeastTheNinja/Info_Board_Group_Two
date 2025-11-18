@@ -52,8 +52,8 @@ export const SkemaPage = async () => {
             (item) => !finalMaks.some((t) => t.Team === item.Team)
         )
 
-        const finalData = [...finalMaks, ...fillRest].slice(0, 10)
-
+        const finalData = [...finalMaks, ...fillRest].slice(0, 12)
+        
         const view = SkemaView(finalData)
         // Ensure we don't duplicate the panel/grid class on the inner view —
         // the outer `root` created above is the grid item.
