@@ -406,8 +406,16 @@ html, body {
 .bus-logo {
   width: 36px;
   height: 36px;
+  animation: infinite;
+  animation-name: rotate;
+  animation-duration: 2s;
 }
 
+@keyframes rotate {
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
 .bus-list {
   display: flex;
   flex-direction: column;
@@ -894,4 +902,4 @@ team-pill {
   color: #bab8b8;
 }
 
-/* You can add more imports for other components as needed */
+/* You can add more imports for other components as needed *//*# sourceMappingURL=main.css.map */

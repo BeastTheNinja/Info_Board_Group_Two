@@ -5,7 +5,17 @@
 
 .bus-header { display:flex; align-items:center; gap:10px; }
 .bus-header h2 { margin:0; color: vars.$color-accent; font-size: var(--font-xxl); font-weight:900; }
-.bus-logo { width: 36px; height: 36px; }
+.bus-logo {
+	width: 36px;
+	height: 36px;
+	animation: infinite;
+	animation-name: rotate;
+	animation-duration: 2s;
+
+	}
+	@keyframes rotate{
+		100%{ transform: rotateZ(360deg); }
+	}
 
 .bus-list { display:flex; flex-direction:column; gap:12px; flex:1 1 auto; min-height:0; overflow:auto; padding: 8px; }
 .bus-item { display: grid; grid-template-columns: 1fr minmax(88px, min-content); align-items: center; gap: 16px; padding: 14px 16px; border-radius:12px; background: rgba(0,0,0,0.04); transition: transform .12s ease, box-shadow .12s ease; width:100%; }
