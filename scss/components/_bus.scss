@@ -134,6 +134,10 @@
     min-width: 96px;
   }
   .bus-stop {
-    font-size: 32px;
+    font-size: 100px;
+  }
+  /* Make destination and other meta text larger and readable on 4K */
+  .bus-destination {
+    font-size: 50px;
   }
 }
