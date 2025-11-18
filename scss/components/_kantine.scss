@@ -2,56 +2,76 @@
 @use "../abstracts/mixins" as mixins;
 
 .kantine-view {
-	display: flex;
-	flex-direction: column;
-	gap: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
 .dagens-card {
-	@include mixins.panel(18px, 14px);
-	width: 100%;
+  @include mixins.panel(18px, 14px);
+  width: 100%;
 }
 
 .dagens-title {
-	font-size: var(--font-xxl);
-	color: vars.$color-accent;
-	font-weight: 900;
-	text-shadow: 0 2px 0 rgba(91,95,177,0.08);
+  font-size: var(--font-xxl);
+  color: vars.$color-accent;
+  font-weight: 900;
+  text-shadow: 0 2px 0 rgba(91, 95, 177, 0.08);
 }
 
 .dagens-sub {
-	color: vars.$color-text-muted;
-	font-size: var(--font-md);
+  color: vars.$color-text-muted;
+  font-size: var(--font-md);
 }
 
-.dagens-list { display: flex; flex-direction: column; gap: 8px; }
-.dagens-item { display: flex; flex-direction: column; gap: 4px; }
-.dagens-day { color: vars.$color-highlight; font-weight: 800; }
+.dagens-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.dagens-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.dagens-day {
+  color: vars.$color-highlight;
+  font-weight: 800;
+}
 
 @media (max-width: vars.$bp-md) {
-	.dagens-title { font-size: var(--font-xl); }
-	.dagens-card { padding: 10px; }
+  .dagens-title {
+    font-size: var(--font-xl);
+  }
+  .dagens-card {
+    padding: 10px;
+  }
 }
 
 /* 4K scaling for the kantine (left column) so clock + dagens-ret are readable */
 @include mixins.bp-up(vars.$bp-4k) {
-	.dagens-card {
-		@include mixins.panel(36px, 18px);
-		width: 100%;
-	}
+  .dagens-card {
+    @include mixins.panel(36px, 18px);
+    width: 100%;
+  }
 
-	.dagens-title {
-		font-size: 96px; /* larger heading on 4K to match Date/Time readability */
-		letter-spacing: 0.6px;
-	}
+  .dagens-title {
+    font-size: 96px; /* larger heading on 4K to match Date/Time readability */
+    letter-spacing: 0.6px;
+  }
 
-	.dagens-sub {
-		font-size: 56px;
-	}
+  .dagens-sub {
+    font-size: 56px;
+  }
 
-	.dagens-list { gap: 14px; }
-	.dagens-item { gap: 8px; }
-	/* Make the day label as large as the sub text (matches clock date sizing) */
-	.dagens-day { font-size: 56px; }
+  .dagens-list {
+    gap: 14px;
+  }
+  .dagens-item {
+    gap: 8px;
+  }
+  /* Make the day label as large as the sub text (matches clock date sizing) */
+  .dagens-day {
+    font-size: 56px;
+  }
 }
-

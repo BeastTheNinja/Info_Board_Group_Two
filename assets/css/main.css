@@ -158,11 +158,14 @@ table {
   min-height: 100vh;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   background: #0e1429;
@@ -229,7 +232,11 @@ html, body {
 }
 
 /* Keep children shrinkable so the grid doesn't overflow */
-#app, .container, .kantine-view, .skema-view, .bus-view {
+#app,
+.container,
+.kantine-view,
+.skema-view,
+.bus-view {
   min-height: 0;
   min-width: 0;
 }
@@ -416,6 +423,24 @@ html, body {
     transform: rotateZ(360deg);
   }
 }
+.bus-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bus-header h2 {
+  margin: 0;
+  color: #5b5fb1;
+  font-size: var(--font-xxl);
+  font-weight: 900;
+}
+
+.bus-logo {
+  width: 36px;
+  height: 36px;
+}
+
 .bus-list {
   display: flex;
   flex-direction: column;
@@ -511,15 +536,30 @@ html, body {
     padding: 18px 22px;
     gap: 20px;
   }
+  /* Increase header, logo and text sizes for readability on 4K displays */
+  .bus-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
   .bus-header h2 {
-    font-size: calc(var(--font-xxl));
+    font-size: 150px;
+  }
+  .bus-logo {
+    width: 150px;
+    height: 150px;
   }
   .bus-departure {
-    padding: 0.9em 1.2em;
-    font-size: calc(var(--font-lg));
+    padding: 1.1em 1.6em;
+    font-size: 36px;
+    min-width: 96px;
   }
   .bus-stop {
-    font-size: calc(var(--font-lg));
+    font-size: 100px;
+  }
+  /* Make destination and other meta text larger and readable on 4K */
+  .bus-destination {
+    font-size: 50px;
   }
 }
 .kantine-view {
@@ -855,7 +895,8 @@ team-pill {
     height: 48px;
     font-size: calc(var(--font-lg));
   }
-  .subject-pill, .info-pill {
+  .subject-pill,
+  .info-pill {
     padding: 1em 1.25em;
     font-size: calc(var(--font-lg));
   }
@@ -863,6 +904,13 @@ team-pill {
     padding: 0.9em 1.2em;
     font-size: calc(var(--font-lg));
     min-width: 96px;
+  }
+  /* Larger header and subtext for SKEMA at 4K */
+  .skema-header {
+    font-size: 130px;
+  }
+  .skema-sub {
+    font-size: 100px;
   }
 }
 /* Utility color pills and small helpers */

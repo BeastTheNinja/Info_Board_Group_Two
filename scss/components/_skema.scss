@@ -3,163 +3,262 @@
 
 /* SKEMA panel - central column */
 .skema-view {
-	@include mixins.panel(20px, 16px);
-	display: flex;
-	flex-direction: column;
-	gap: 18px; /* slightly larger gap so content breathes */
-	align-items: stretch;
-	padding: 22px; /* fill more of the panel area */
+  @include mixins.panel(20px, 16px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px; /* slightly larger gap so content breathes */
+  align-items: stretch;
+  padding: 22px; /* fill more of the panel area */
 }
 
 .skema-header {
-	text-align: center;
-	color: vars.$color-text; /* white */
-	font-weight: 900;
-	font-size: var(--font-xxl);
-	letter-spacing: 0.6px;
-	margin-bottom: 2px;
+  text-align: center;
+  color: vars.$color-text; /* white */
+  font-weight: 900;
+  font-size: var(--font-xxl);
+  letter-spacing: 0.6px;
+  margin-bottom: 2px;
 }
 .skema-sub {
-	color: vars.$color-text-muted;
-	text-align: center;
-	font-size: var(--font-md);
-	margin-bottom: 8px;
+  color: vars.$color-text-muted;
+  text-align: center;
+  font-size: var(--font-md);
+  margin-bottom: 8px;
 }
 
 /* list container: flexible and won't force page scrolling */
 .skema-list {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: 16px; /* more gap between rows for clarity */
-	flex: 1 1 auto;
-	min-height: 0;
-	overflow: auto; /* allow internal scrolling when content overflows */
-	max-width: none; /* allow the skema list to expand full-bleed */
-	margin: 0; /* fill the panel width */
-	padding: 8px 10px; /* breathing room inside list */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* more gap between rows for clarity */
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto; /* allow internal scrolling when content overflows */
+  max-width: none; /* allow the skema list to expand full-bleed */
+  margin: 0; /* fill the panel width */
+  padding: 8px 10px; /* breathing room inside list */
 }
 
 /* Each row: a dark rounded bar containing small colored team pill, white info pill, and time */
 .skema-row {
-	display: grid;
-	/* columns: locale | team | subject (grows) | time */
-	grid-template-columns: minmax(44px, 64px) minmax(56px, 96px) 1fr minmax(64px, 96px);
-	align-items: center;
-	gap: 14px;
-	width: 100%;
-	padding: 12px 14px;
-	border-radius: 12px;
-	background: rgba(2,8,22,0.28); /* slightly darker bar */
-	transition: transform 0.12s ease, box-shadow 0.12s ease;
+  display: grid;
+  /* columns: locale | team | subject (grows) | time */
+  grid-template-columns: minmax(44px, 64px) minmax(56px, 96px) 1fr minmax(
+      64px,
+      96px
+    );
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(2, 8, 22, 0.28); /* slightly darker bar */
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
-.skema-row:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(2,6,23,0.5); }
+.skema-row:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(2, 6, 23, 0.5);
+}
 
 team-pill {
-	min-width: 64px;
-	height: 36px;
-	padding: 0.4em 0.9em;
-	border-radius: 10px;
-	font-weight: 900;
-	font-size: calc(var(--font-md));
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	box-shadow: inset 0 -2px 0 rgba(0,0,0,0.08);
+  min-width: 64px;
+  height: 36px;
+  padding: 0.4em 0.9em;
+  border-radius: 10px;
+  font-weight: 900;
+  font-size: calc(var(--font-md));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.08);
 }
-.team-pill--red { background: vars.$color-danger; color: vars.$color-text; }
-.team-pill--yellow { background: vars.$color-success; color: vars.$color-text; }
-.team-pill--blue { background: vars.$color-info; color: vars.$color-text; }
+.team-pill--red {
+  background: vars.$color-danger;
+  color: vars.$color-text;
+}
+.team-pill--yellow {
+  background: vars.$color-success;
+  color: vars.$color-text;
+}
+.team-pill--blue {
+  background: vars.$color-info;
+  color: vars.$color-text;
+}
 
 /* Locale (room) pill - small subtle color on left */
 .lokale-pill {
-	background: rgba(255,255,255,0.04);
-	color: vars.$color-text;
-	padding: 0.45em 0.6em;
-	border-radius: 8px;
-	font-weight: 800;
-	font-size: calc(var(--font-sm));
-	min-width: 44px;
-	text-align: center;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  color: vars.$color-text;
+  padding: 0.45em 0.6em;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: calc(var(--font-sm));
+  min-width: 44px;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Subject pill - light rounded chip showing subject name */
 .subject-pill {
-	background: vars.$color-neutral-light;
-	color: #0b1626;
-	padding: 0.6em 1em;
-	border-radius: 999px;
-	font-weight: 800;
-	font-size: var(--font-sm);
-	display: inline-flex;
-	align-items: center;
-	gap: 0.6em;
-	margin: 0; /* grid places it correctly */
-	justify-self: center; /* center inside its grid column */
-	width: 100%;
-	max-width: 720px; /* don't let it grow excessively */
-	justify-content: center; /* center pill content */
+  background: vars.$color-neutral-light;
+  color: #0b1626;
+  padding: 0.6em 1em;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: var(--font-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  margin: 0; /* grid places it correctly */
+  justify-self: center; /* center inside its grid column */
+  width: 100%;
+  max-width: 720px; /* don't let it grow excessively */
+  justify-content: center; /* center pill content */
 }
 
 /* Subject color variants */
-.subject--digital { background: #f6f3e6; color: #0b1626; }
-.subject--web { background: vars.$color-info; color: vars.$color-text; }
-.subject--figma { background: vars.$color-success; color: vars.$color-text; }
-.subject--photoshop { background: vars.$color-highlight; color: vars.$color-text; }
-.subject--grafisk { background: vars.$color-danger; color: vars.$color-text; }
-.subject--medie { background: vars.$color-accent; color: vars.$color-text; }
-.subject--muted { background: rgba(255,255,255,0.06); color: vars.$color-text; }
-
-/* Room/locale color variants (by starting letter) */
-.lokale--b { background: vars.$color-info; color: vars.$color-text; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06); }
-.lokale--d { background: vars.$color-success; color: vars.$color-text; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06); }
-.lokale--p { background: vars.$color-accent; color: vars.$color-text; box-shadow: inset 0 -2px 0 rgba(0,0,0,0.06); }
-.lokale--muted { background: rgba(255,255,255,0.04); color: vars.$color-text; }
-
-.info-pill {
-	background: vars.$color-neutral-light;
-	color: #0b1626;
-	padding: 0.6em 1em;
-	border-radius: 999px;
-	font-weight: 800;
-	display: inline-flex;
-	align-items: center;
-	gap: 0.6em;
-	box-shadow: 0 2px 0 rgba(0,0,0,0.04);
+.subject--digital {
+  background: #f6f3e6;
+  color: #0b1626;
+}
+.subject--web {
+  background: vars.$color-info;
+  color: vars.$color-text;
+}
+.subject--figma {
+  background: vars.$color-success;
+  color: vars.$color-text;
+}
+.subject--photoshop {
+  background: vars.$color-highlight;
+  color: vars.$color-text;
+}
+.subject--grafisk {
+  background: vars.$color-danger;
+  color: vars.$color-text;
+}
+.subject--medie {
+  background: vars.$color-accent;
+  color: vars.$color-text;
+}
+.subject--muted {
+  background: rgba(255, 255, 255, 0.06);
+  color: vars.$color-text;
 }
 
-.skema-subinfo { color: vars.$color-text-muted; font-size: var(--font-sm); }
+/* Room/locale color variants (by starting letter) */
+.lokale--b {
+  background: vars.$color-info;
+  color: vars.$color-text;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.06);
+}
+.lokale--d {
+  background: vars.$color-success;
+  color: vars.$color-text;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.06);
+}
+.lokale--p {
+  background: vars.$color-accent;
+  color: vars.$color-text;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.06);
+}
+.lokale--muted {
+  background: rgba(255, 255, 255, 0.04);
+  color: vars.$color-text;
+}
+
+.info-pill {
+  background: vars.$color-neutral-light;
+  color: #0b1626;
+  padding: 0.6em 1em;
+  border-radius: 999px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.04);
+}
+
+.skema-subinfo {
+  color: vars.$color-text-muted;
+  font-size: var(--font-sm);
+}
 
 .time-pill {
-	background: rgba(255,255,255,0.06);
-	color: vars.$color-text-muted;
-	padding: 0.6em 0.9em;
-	border-radius: 8px;
-	font-weight: 800;
-	font-size: var(--font-md);
-	text-align: center;
-	justify-self: end; /* keep time aligned to the right column */
-	min-width: 72px; /* consistent width so times align */
+  background: rgba(255, 255, 255, 0.06);
+  color: vars.$color-text-muted;
+  padding: 0.6em 0.9em;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: var(--font-md);
+  text-align: center;
+  justify-self: end; /* keep time aligned to the right column */
+  min-width: 72px; /* consistent width so times align */
 }
 
 @media (max-width: vars.$bp-md) {
-	.skema-view { padding: 12px; gap: 10px; }
-	.skema-header { font-size: var(--font-xl); }
-	.skema-row { padding: 8px; }
-	.team-pill { min-width: 36px; height: 24px; font-size: calc(var(--font-sm) - 1px); }
-	.info-pill { padding: 0.4em 0.6em; font-size: calc(var(--font-sm) - 1px); }
-	.time-pill { padding: 0.35em 0.5em; font-size: calc(var(--font-sm) - 1px); }
+  .skema-view {
+    padding: 12px;
+    gap: 10px;
+  }
+  .skema-header {
+    font-size: var(--font-xl);
+  }
+  .skema-row {
+    padding: 8px;
+  }
+  .team-pill {
+    min-width: 36px;
+    height: 24px;
+    font-size: calc(var(--font-sm) - 1px);
+  }
+  .info-pill {
+    padding: 0.4em 0.6em;
+    font-size: calc(var(--font-sm) - 1px);
+  }
+  .time-pill {
+    padding: 0.35em 0.5em;
+    font-size: calc(var(--font-sm) - 1px);
+  }
 }
 
 /* 4K tweaks: allow wider central skema list and larger paddings */
 @include mixins.bp-up(vars.$bp-4k) {
-	.skema-list { max-width: none; padding: 18px 22px; }
-	.skema-row { padding: 20px 26px; grid-template-columns: minmax(56px, 84px) minmax(72px, 120px) 1fr minmax(84px, 120px); }
-	.team-pill { min-width: 84px; height: 48px; font-size: calc(var(--font-lg)); }
-	.subject-pill, .info-pill { padding: 1em 1.25em; font-size: calc(var(--font-lg)); }
-	.time-pill { padding: 0.9em 1.2em; font-size: calc(var(--font-lg)); min-width: 96px; }
-}
+  .skema-list {
+    max-width: none;
+    padding: 18px 22px;
+  }
+  .skema-row {
+    padding: 20px 26px;
+    grid-template-columns: minmax(56px, 84px) minmax(72px, 120px) 1fr minmax(
+        84px,
+        120px
+      );
+  }
+  .team-pill {
+    min-width: 84px;
+    height: 48px;
+    font-size: calc(var(--font-lg));
+  }
+  .subject-pill,
+  .info-pill {
+    padding: 1em 1.25em;
+    font-size: calc(var(--font-lg));
+  }
+  .time-pill {
+    padding: 0.9em 1.2em;
+    font-size: calc(var(--font-lg));
+    min-width: 96px;
+  }
 
+  /* Larger header and subtext for SKEMA at 4K */
+  .skema-header {
+    font-size: 130px;
+  }
+  .skema-sub {
+    font-size: 100px;
+  }
+}
