@@ -168,7 +168,7 @@ html,
 body {
   height: 100%;
   margin: 0;
-  background: red;
+  background: #0e1429;
   color: #ffffff;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   overflow: hidden;
