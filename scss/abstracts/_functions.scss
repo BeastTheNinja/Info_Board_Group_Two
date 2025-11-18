@@ -1,12 +1,12 @@
 // Small helper functions used by components
 @function to-rem($px, $base: 16) {
-	@if type-of($px) == 'number' {
-		@return ($px / $base) * 1rem;
-	}
-	@return $px;
+  @if type-of($px) == "number" {
+    @return ($px / $base) * 1rem;
+  }
+  @return $px;
 }
 
 @function clamp-scale($min, $preferred, $max) {
-	// returns a CSS clamp expression
-	@return clamp(#{$min}, #{$preferred}, #{$max});
+  // returns a CSS clamp expression
+  @return clamp(#{$min}, #{$preferred}, #{$max});
 }
