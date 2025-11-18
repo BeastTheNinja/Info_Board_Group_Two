@@ -517,11 +517,11 @@ body {
     gap: 14px;
   }
   .bus-header h2 {
-    font-size: 100px;
+    font-size: 150px;
   }
   .bus-logo {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
   }
   .bus-departure {
     padding: 1.1em 1.6em;
@@ -529,7 +529,11 @@ body {
     min-width: 96px;
   }
   .bus-stop {
-    font-size: 32px;
+    font-size: 100px;
+  }
+  /* Make destination and other meta text larger and readable on 4K */
+  .bus-destination {
+    font-size: 50px;
   }
 }
 .kantine-view {
@@ -877,10 +881,10 @@ team-pill {
   }
   /* Larger header and subtext for SKEMA at 4K */
   .skema-header {
-    font-size: 100px;
+    font-size: 130px;
   }
   .skema-sub {
-    font-size: 50px;
+    font-size: 100px;
   }
 }
 /* Utility color pills and small helpers */
