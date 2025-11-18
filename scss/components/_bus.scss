@@ -1,34 +1,139 @@
 @use "../abstracts/variables" as vars;
 @use "../abstracts/mixins" as mixins;
 
-.bus-view { @include mixins.panel(18px, 14px); display:flex; flex-direction:column; gap:12px; align-items: stretch; }
+.bus-view {
+  @include mixins.panel(18px, 14px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
 
-.bus-header { display:flex; align-items:center; gap:10px; }
-.bus-header h2 { margin:0; color: vars.$color-accent; font-size: var(--font-xxl); font-weight:900; }
-.bus-logo { width: 36px; height: 36px; }
+.bus-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bus-header h2 {
+  margin: 0;
+  color: vars.$color-accent;
+  font-size: var(--font-xxl);
+  font-weight: 900;
+}
+.bus-logo {
+  width: 36px;
+  height: 36px;
+}
 
-.bus-list { display:flex; flex-direction:column; gap:12px; flex:1 1 auto; min-height:0; overflow:auto; padding: 8px; }
-.bus-item { display: grid; grid-template-columns: 1fr minmax(88px, min-content); align-items: center; gap: 16px; padding: 14px 16px; border-radius:12px; background: rgba(0,0,0,0.04); transition: transform .12s ease, box-shadow .12s ease; width:100%; }
-.bus-item:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(0,0,0,0.35); }
+.bus-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  padding: 8px;
+}
+.bus-item {
+  display: grid;
+  grid-template-columns: 1fr minmax(88px, min-content);
+  align-items: center;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.04);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  width: 100%;
+}
+.bus-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
 
-.bus-stop { font-weight:800; color: vars.$color-accent; font-size: var(--font-md); text-align: left; }
-.bus-times { display:flex; flex-direction:column; align-items:flex-end; gap:6px; min-width:88px; }
-.bus-departure { background: vars.$color-info; color: vars.$color-text; padding: 0.6em 1em; border-radius:10px; font-weight:900; font-size: var(--font-md); box-shadow: 0 6px 14px rgba(47, 88, 255, 0.18); text-align:center; min-width:72px; }
-.bus-arrival { background: rgba(255,255,255,0.06); color: vars.$color-text-muted; padding: 0.45em 0.7em; border-radius:8px; font-size: var(--font-sm); text-align:center; }
+.bus-stop {
+  font-weight: 800;
+  color: vars.$color-accent;
+  font-size: var(--font-md);
+  text-align: left;
+}
+.bus-times {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  min-width: 88px;
+}
+.bus-departure {
+  background: vars.$color-info;
+  color: vars.$color-text;
+  padding: 0.6em 1em;
+  border-radius: 10px;
+  font-weight: 900;
+  font-size: var(--font-md);
+  box-shadow: 0 6px 14px rgba(47, 88, 255, 0.18);
+  text-align: center;
+  min-width: 72px;
+}
+.bus-arrival {
+  background: rgba(255, 255, 255, 0.06);
+  color: vars.$color-text-muted;
+  padding: 0.45em 0.7em;
+  border-radius: 8px;
+  font-size: var(--font-sm);
+  text-align: center;
+}
 
-.bus-line { background: vars.$color-danger; color: vars.$color-text; padding:6px 8px; border-radius:999px; font-weight:800; font-size: var(--font-sm); }
-.bus-destination { background: rgba(255,255,255,0.03); padding:6px 10px; border-radius:10px; color: vars.$color-text-muted; }
+.bus-line {
+  background: vars.$color-danger;
+  color: vars.$color-text;
+  padding: 6px 8px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: var(--font-sm);
+}
+.bus-destination {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 6px 10px;
+  border-radius: 10px;
+  color: vars.$color-text-muted;
+}
 
 @media (max-width: vars.$bp-md) {
-	.bus-item { padding:8px 10px; }
-	.bus-header h2 { font-size: var(--font-xl); }
+  .bus-item {
+    padding: 8px 10px;
+  }
+  .bus-header h2 {
+    font-size: var(--font-xl);
+  }
 }
 
 @include mixins.bp-up(vars.$bp-4k) {
-	.bus-list { padding: 14px; }
-	.bus-item { padding: 18px 22px; gap: 20px; }
-	.bus-header h2 { font-size: calc(var(--font-xxl)); }
-	.bus-departure { padding: 0.9em 1.2em; font-size: calc(var(--font-lg)); }
-	.bus-stop { font-size: calc(var(--font-lg)); }
+  .bus-list {
+    padding: 14px;
+  }
+  .bus-item {
+    padding: 18px 22px;
+    gap: 20px;
+  }
+  /* Increase header, logo and text sizes for readability on 4K displays */
+  .bus-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .bus-header h2 {
+    font-size: 100px;
+  }
+  .bus-logo {
+    width: 100px;
+    height: 100px;
+  }
+  .bus-departure {
+    padding: 1.1em 1.6em;
+    font-size: 36px;
+    min-width: 96px;
+  }
+  .bus-stop {
+    font-size: 32px;
+  }
 }
-

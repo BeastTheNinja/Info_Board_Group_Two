@@ -2,28 +2,28 @@
 @use "./_variables" as vars;
 
 @mixin panel($padding: 16px, $radius: 12px) {
-	background: vars.$color-bg;
-	color: vars.$color-text;
-	padding: $padding;
-	border-radius: $radius;
-	box-shadow: vars.$shadow-card;
+  background: vars.$color-bg;
+  color: vars.$color-text;
+  padding: $padding;
+  border-radius: $radius;
+  box-shadow: vars.$shadow-card;
 }
 
 @mixin flex-center($dir: row, $gap: 8px) {
-	display: flex;
-	flex-direction: $dir;
-	align-items: center;
-	justify-content: center;
-	gap: $gap;
+  display: flex;
+  flex-direction: $dir;
+  align-items: center;
+  justify-content: center;
+  gap: $gap;
 }
 
 @mixin visually-hidden {
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	clip: rect(1px, 1px, 1px, 1px);
-	white-space: nowrap;
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
 }
 
 // Breakpoint helpers

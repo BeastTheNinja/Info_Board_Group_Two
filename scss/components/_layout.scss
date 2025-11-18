@@ -2,112 +2,151 @@
 @use "../abstracts/variables" as vars;
 @use "../abstracts/mixins" as mixins;
 
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-html, body {
-	height: 100%;
-	margin: 0;
-	background: vars.$box-bg;
-	color: vars.$color-text;
-	font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-	overflow: hidden;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: vars.$box-bg;
+  color: vars.$color-text;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial;
+  overflow: hidden;
 }
 
 :root {
-	--font-sm: 12px;
-	--font-base: 14px;
-	--font-md: 16px;
-	--font-lg: 20px;
-	--font-xl: 24px;
-	--font-xxl: 32px;
+  --font-sm: 12px;
+  --font-base: 14px;
+  --font-md: 16px;
+  --font-lg: 20px;
+  --font-xl: 24px;
+  --font-xxl: 32px;
 }
 
 .container {
-	height: 100vh;
-	width: 100%;
-	max-width: none; /* allow full-bleed on very large displays */
-	margin: 0;
-	padding: 0; /* remove outer padding so panels reach the browser edges */
-	overflow: hidden;
+  height: 100vh;
+  width: 100%;
+  max-width: none; /* allow full-bleed on very large displays */
+  margin: 0;
+  padding: 0; /* remove outer padding so panels reach the browser edges */
+  overflow: hidden;
 }
 
 #app {
-	height: 100%;
-	display: grid;
-	/* three-column layout that fills the full available height */
-	grid-template-columns: 1fr 1.25fr 0.95fr;
-	grid-template-rows: 1fr; /* single row that stretches */
-	grid-template-areas: "kantine skema bus";
-	gap: 22px;
-	align-items: stretch;
-	min-height: 0;
+  height: 100%;
+  display: grid;
+  /* three-column layout that fills the full available height */
+  grid-template-columns: 1fr 1.25fr 0.95fr;
+  grid-template-rows: 1fr; /* single row that stretches */
+  grid-template-areas: "kantine skema bus";
+  gap: 22px;
+  align-items: stretch;
+  min-height: 0;
 }
 
 /* Generic panel wrapper used by components */
 .panel {
-	@include mixins.panel(18px, 14px);
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
-	min-height: 0;
-	height: 100%; /* ensure panel fills its grid area vertically */
+  @include mixins.panel(18px, 14px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  height: 100%; /* ensure panel fills its grid area vertically */
   font-size: var(--font-base); /* scale inner text by root font vars */
 }
 
-.kantine-view { grid-area: kantine; }
-.skema-view { grid-area: skema; }
-.bus-view   { grid-area: bus; }
+.kantine-view {
+  grid-area: kantine;
+}
+.skema-view {
+  grid-area: skema;
+}
+.bus-view {
+  grid-area: bus;
+}
 
 /* Keep children shrinkable so the grid doesn't overflow */
-#app, .container, .kantine-view, .skema-view, .bus-view { min-height: 0; min-width: 0; }
+#app,
+.container,
+.kantine-view,
+.skema-view,
+.bus-view {
+  min-height: 0;
+  min-width: 0;
+}
 
 /* Helper: lists should flex but not force the page to scroll */
-.flex-list { display: flex; flex-direction: column; gap: 10px; flex: 1 1 auto; min-height: 0; overflow: auto; }
+.flex-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
 
 /* Responsive: collapse to single column on narrow viewports */
 @media (max-width: vars.$bp-md) {
-	:root {
-		--font-sm: 11px;
-		--font-base: 12px;
-		--font-md: 14px;
-		--font-lg: 16px;
-		--font-xl: 18px;
-		--font-xxl: 22px;
-	}
-	#app { grid-template-columns: 1fr; grid-template-rows: auto auto auto; grid-template-areas: "kantine" "skema" "bus"; gap: 12px; }
-	.container { padding: 8px; }
-	.panel { padding: 10px; border-radius: 10px; }
+  :root {
+    --font-sm: 11px;
+    --font-base: 12px;
+    --font-md: 14px;
+    --font-lg: 16px;
+    --font-xl: 18px;
+    --font-xxl: 22px;
+  }
+  #app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "kantine" "skema" "bus";
+    gap: 12px;
+  }
+  .container {
+    padding: 8px;
+  }
+  .panel {
+    padding: 10px;
+    border-radius: 10px;
+  }
 }
 
 /* 4K scaling: upscale typography, paddings and gaps for very large screens */
 @include mixins.bp-up(vars.$bp-4k) {
-	:root {
-		--font-sm: 16px;
-		--font-base: 18px;
-		--font-md: 20px;
-		--font-lg: 28px;
-		--font-xl: 36px;
-		--font-xxl: 48px;
-	}
+  :root {
+    --font-sm: 16px;
+    --font-base: 18px;
+    --font-md: 20px;
+    --font-lg: 28px;
+    --font-xl: 36px;
+    --font-xxl: 48px;
+  }
 
-	.container {
-		max-width: none;
-		padding: 36px; /* keep some inner breathing room on very large screens */
-	}
+  .container {
+    max-width: none;
+    padding: 36px; /* keep some inner breathing room on very large screens */
+  }
 
-	/* scale base font-size on 4K so rems grow where used */
-	html { font-size: 112.5%; }
+  /* scale base font-size on 4K so rems grow where used */
+  html {
+    font-size: 112.5%;
+  }
 
-	#app {
-		gap: 38px;
-		grid-template-columns: 1.1fr 1.6fr 1fr; /* give center more room on 4k */
-	}
+  #app {
+    gap: 38px;
+    grid-template-columns: 1.1fr 1.6fr 1fr; /* give center more room on 4k */
+  }
 
-	.panel {
-		@include mixins.panel(28px, 18px);
-		gap: 18px;
-	}
+  .panel {
+    @include mixins.panel(28px, 18px);
+    gap: 18px;
+  }
 
-	.flex-list { gap: 16px; }
+  .flex-list {
+    gap: 16px;
+  }
 }
-
