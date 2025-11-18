@@ -119,9 +119,7 @@
     font-size: var(--font-xl);
   }
 }
-
-@include mixins.bp-up(vars.$bp-4k) {
-  .bus-list {
+.bus-list {
     padding: 14px;
   }
   .bus-item {
@@ -153,4 +151,3 @@
   .bus-destination {
     font-size: 50px;
   }
-}
