@@ -566,6 +566,34 @@ html, body {
     padding: 10px;
   }
 }
+/* 4K scaling for the kantine (left column) so clock + dagens-ret are readable */
+@media (min-width: 3840px) {
+  .dagens-card {
+    background: #111d35;
+    color: #ffffff;
+    padding: 36px;
+    border-radius: 18px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    width: 100%;
+  }
+  .dagens-title {
+    font-size: 96px; /* larger heading on 4K to match Date/Time readability */
+    letter-spacing: 0.6px;
+  }
+  .dagens-sub {
+    font-size: 56px;
+  }
+  .dagens-list {
+    gap: 14px;
+  }
+  .dagens-item {
+    gap: 8px;
+  }
+  /* Make the day label as large as the sub text (matches clock date sizing) */
+  .dagens-day {
+    font-size: 56px;
+  }
+}
 /* SKEMA panel - central column */
 .skema-view {
   background: #111d35;
