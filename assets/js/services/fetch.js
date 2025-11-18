@@ -57,7 +57,7 @@ export async function fetchFresh() {
     raw = arrays.length ? arrays[0] : [];
   }
 
-  const departures = raw.map(mapRawToModel).slice(0, 7);
+  const departures = raw.map(mapRawToModel).slice(0, 6);
   cache = { ts: Date.now(), data: departures };
   return departures;
 }
