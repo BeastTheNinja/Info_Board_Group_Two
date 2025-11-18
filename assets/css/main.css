@@ -551,8 +551,16 @@ body {
 .bus-logo {
   width: 150px;
   height: 150px;
+  animation: infinite;
+  animation-name: rotate;
+  animation-duration: 2s;
 }
 
+@keyframes rotate {
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
 .bus-departure {
   padding: 1.1em 1.6em;
   font-size: 36px;
@@ -956,4 +964,4 @@ team-pill {
   color: #bab8b8;
 }
 
-/* You can add more imports for other components as needed *//*# sourceMappingURL=main.css.map */
+/* You can add more imports for other components as needed */
