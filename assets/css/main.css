@@ -536,42 +536,6 @@ body {
     font-size: 50px;
   }
 }
-/* Some 4K TVs report a high devicePixelRatio which halves the CSS viewport width
-   (e.g. 3840px physical -> 1920px CSS). If your TV uses DPR>1 the `min-width: 3840px`
-   media query won't match. Provide a DPR-aware fallback that targets large CSS
-   viewports with high pixel density so the same 4K styles apply. */
-@media (min-width: 1920px) and (min-resolution: 2dppx), (min-width: 1920px) and (-webkit-min-device-pixel-ratio: 2) {
-  .bus-list {
-    padding: 14px;
-  }
-  .bus-item {
-    padding: 18px 22px;
-    gap: 20px;
-  }
-  .bus-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .bus-header h2 {
-    font-size: 150px;
-  }
-  .bus-logo {
-    width: 150px;
-    height: 150px;
-  }
-  .bus-departure {
-    padding: 1.1em 1.6em;
-    font-size: 36px;
-    min-width: 96px;
-  }
-  .bus-stop {
-    font-size: 100px;
-  }
-  .bus-destination {
-    font-size: 50px;
-  }
-}
 .kantine-view {
   display: flex;
   flex-direction: column;
