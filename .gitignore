@@ -1,1 +1,7 @@
-*.cwss
+*.css
+.vscode
+.DS_Store
+.main.css.map
+node_modules/
+dist/
+.env
