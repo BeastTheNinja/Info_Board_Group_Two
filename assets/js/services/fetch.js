@@ -1,6 +1,5 @@
 // Departures service: fetches nearby departures and provides an adaptive poll loop.
-const API_URL =
-  "https://www.rejseplanen.dk/api/nearbyDepartureBoard?accessId=5b71ed68-7338-4589-8293-f81f0dc92cf2&originCoordLat=57.048731&originCoordLong=9.968186&format=json";
+const API_URL = ''
 export const DEFAULT_FETCH_INTERVAL = 60 * 1000; // active: 60s
 export const SLOW_FETCH_INTERVAL = 5 * 60 * 1000; // slow: 5m
 
