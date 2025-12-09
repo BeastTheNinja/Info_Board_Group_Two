@@ -1,7 +1,7 @@
 // Departures service: fetches nearby departures and provides an adaptive poll loop.
-const API_URL = ''
-export const DEFAULT_FETCH_INTERVAL = 60 * 1000; // active: 60s
-export const SLOW_FETCH_INTERVAL = 5 * 60 * 1000; // slow: 5m
+const API_URL = 'https://www.rejseplanen.dk/api/nearbyDepartureBoard?accessId=5b71ed68-7338-4589-8293-f81f0dc92cf2&originCoordLat=57.048731&originCoordLong=9.968186&format=json';
+export const DEFAULT_FETCH_INTERVAL = 60 * 60 * 1000; // active: 1 hour
+export const SLOW_FETCH_INTERVAL = 60 * 60 * 1000; // slow: 1 hour (will be paused 7 PM - 7 AM)
 
 export const FETCH_INTERVAL =
   typeof window !== "undefined" && window.BUS_FETCH_INTERVAL
@@ -83,11 +83,18 @@ export const startAutoRefresh = (onUpdate) => {
     return h >= 23 || h < 6;
   };
 
+  const isOffHours = () => {
+    const h = new Date().getHours();
+    // Don't fetch between 7 PM (19:00) and 7 AM (07:00)
+    return h >= 19 || h < 7;
+  };
+
   const computeInterval = () => {
-    // If document is hidden or it's night, slow down
+    // If off-hours (7 PM - 7 AM), don't fetch at all by returning very large interval
+    if (isOffHours()) return 24 * 60 * 60 * 1000; // 24 hours, effectively pause
+    // If document is hidden, slow down
     if (typeof document !== "undefined" && document.visibilityState !== "visible")
       return SLOW_FETCH_INTERVAL;
-    if (isNight()) return SLOW_FETCH_INTERVAL;
     return DEFAULT_FETCH_INTERVAL;
   };
 
