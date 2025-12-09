@@ -423,24 +423,6 @@ body {
     transform: rotateZ(360deg);
   }
 }
-.bus-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.bus-header h2 {
-  margin: 0;
-  color: #5b5fb1;
-  font-size: var(--font-xxl);
-  font-weight: 900;
-}
-
-.bus-logo {
-  width: 36px;
-  height: 36px;
-}
-
 .bus-list {
   display: flex;
   flex-direction: column;
@@ -528,54 +510,87 @@ body {
     font-size: var(--font-xl);
   }
 }
-.bus-list {
-  padding: 14px;
-}
-
-.bus-item {
-  padding: 18px 22px;
-  gap: 20px;
-}
-
-/* Increase header, logo and text sizes for readability on 4K displays */
-.bus-header {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.bus-header h2 {
-  font-size: 150px;
-}
-
-.bus-logo {
-  width: 150px;
-  height: 150px;
-  animation: infinite;
-  animation-name: rotate;
-  animation-duration: 2s;
-}
-
-@keyframes rotate {
-  100% {
-    transform: rotateZ(360deg);
+/* 4K scaling: upscale bus panel for 3840x2160 displays */
+@media (min-width: 3840px) {
+  .bus-list {
+    padding: 14px;
+  }
+  .bus-item {
+    padding: 18px 22px;
+    gap: 20px;
+  }
+  .bus-header {
+    gap: 14px;
+  }
+  .bus-header h2 {
+    font-size: 64px;
+  }
+  .bus-logo {
+    width: 56px;
+    height: 56px;
+  }
+  .bus-departure {
+    padding: 1.1em 1.6em;
+    font-size: 36px;
+    min-width: 96px;
+  }
+  .bus-stop {
+    font-size: 32px;
+  }
+  .bus-destination {
+    font-size: 28px;
+    padding: 10px 14px;
+  }
+  .bus-arrival {
+    font-size: 24px;
+    padding: 0.6em 0.9em;
+  }
+  .bus-line {
+    font-size: 24px;
+    padding: 8px 12px;
   }
 }
-.bus-departure {
-  padding: 1.1em 1.6em;
-  font-size: 36px;
-  min-width: 96px;
+/* DPR-aware fallback for 4K TVs with high devicePixelRatio
+   (e.g. 3840px physical width but CSS viewport ~1920px at DPR 2) */
+@media (min-width: 1920px) and (min-resolution: 2dppx), (min-width: 1920px) and (-webkit-min-device-pixel-ratio: 2) {
+  .bus-list {
+    padding: 14px;
+  }
+  .bus-item {
+    padding: 18px 22px;
+    gap: 20px;
+  }
+  .bus-header {
+    gap: 14px;
+  }
+  .bus-header h2 {
+    font-size: 64px;
+  }
+  .bus-logo {
+    width: 56px;
+    height: 56px;
+  }
+  .bus-departure {
+    padding: 1.1em 1.6em;
+    font-size: 36px;
+    min-width: 96px;
+  }
+  .bus-stop {
+    font-size: 32px;
+  }
+  .bus-destination {
+    font-size: 28px;
+    padding: 10px 14px;
+  }
+  .bus-arrival {
+    font-size: 24px;
+    padding: 0.6em 0.9em;
+  }
+  .bus-line {
+    font-size: 24px;
+    padding: 8px 12px;
+  }
 }
-
-.bus-stop {
-  font-size: 100px;
-}
-
-/* Make destination and other meta text larger and readable on 4K */
-.bus-destination {
-  font-size: 50px;
-}
-
 .kantine-view {
   display: flex;
   flex-direction: column;
