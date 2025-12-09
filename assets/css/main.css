@@ -400,19 +400,19 @@ body {
 .bus-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
 }
 
 .bus-header h2 {
   margin: 0;
   color: #5b5fb1;
-  font-size: var(--font-xxl);
+  font-size: calc(var(--font-xxl) * 1.8);
   font-weight: 900;
 }
 
 .bus-logo {
-  width: 36px;
-  height: 36px;
+  width: 52px;
+  height: 52px;
   animation: infinite;
   animation-name: rotate;
   animation-duration: 2s;
@@ -426,19 +426,19 @@ body {
 .bus-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   flex: 1 1 auto;
   min-height: 0;
   overflow: auto;
-  padding: 8px;
+  padding: 18px 22px;
 }
 
 .bus-item {
   display: grid;
-  grid-template-columns: 1fr minmax(88px, min-content);
+  grid-template-columns: minmax(120px, 200px) 1fr minmax(100px, 150px);
   align-items: center;
-  gap: 16px;
-  padding: 14px 16px;
+  gap: 20px;
+  padding: 20px 26px;
   border-radius: 12px;
   background: rgba(0, 0, 0, 0.04);
   transition: transform 0.12s ease, box-shadow 0.12s ease;
@@ -453,53 +453,59 @@ body {
 .bus-stop {
   font-weight: 800;
   color: #5b5fb1;
-  font-size: var(--font-md);
+  font-size: calc(var(--font-lg) * 1.2);
   text-align: left;
 }
 
 .bus-times {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 6px;
-  min-width: 88px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  min-width: 100px;
 }
 
 .bus-departure {
   background: #297ed2;
   color: #ffffff;
-  padding: 0.6em 1em;
+  padding: 0.8em 1.2em;
   border-radius: 10px;
   font-weight: 900;
-  font-size: var(--font-md);
+  font-size: calc(var(--font-lg) * 1.1);
   box-shadow: 0 6px 14px rgba(47, 88, 255, 0.18);
   text-align: center;
-  min-width: 72px;
+  min-width: 80px;
 }
 
 .bus-arrival {
   background: rgba(255, 255, 255, 0.06);
   color: #bab8b8;
-  padding: 0.45em 0.7em;
+  padding: 0.5em 0.8em;
   border-radius: 8px;
-  font-size: var(--font-sm);
+  font-size: calc(var(--font-md));
   text-align: center;
 }
 
 .bus-line {
   background: #d92a2a;
   color: #ffffff;
-  padding: 6px 8px;
+  padding: 8px 14px;
   border-radius: 999px;
   font-weight: 800;
-  font-size: var(--font-sm);
+  font-size: calc(var(--font-md));
+  display: inline-block;
 }
 
 .bus-destination {
   background: rgba(255, 255, 255, 0.03);
-  padding: 6px 10px;
+  padding: 10px 14px;
   border-radius: 10px;
   color: #bab8b8;
+  font-size: calc(var(--font-md) * 1.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
 @media (max-width: 1000px) {
@@ -508,47 +514,6 @@ body {
   }
   .bus-header h2 {
     font-size: var(--font-xl);
-  }
-}
-/* 4K scaling: upscale bus panel for 3840x2160 displays */
-@media (min-width: 3840px) {
-  .bus-list {
-    padding: 18px 22px;
-    gap: 16px;
-  }
-  .bus-item {
-    padding: 20px 26px;
-    gap: 20px;
-  }
-  .bus-header {
-    gap: 16px;
-  }
-  .bus-header h2 {
-    font-size: calc(var(--font-xxl) * 1.8);
-  }
-  .bus-logo {
-    width: 52px;
-    height: 52px;
-  }
-  .bus-stop {
-    font-size: calc(var(--font-lg) * 1.2);
-  }
-  .bus-departure {
-    padding: 1.1em 1.6em;
-    font-size: calc(var(--font-lg) * 1.1);
-    min-width: 96px;
-  }
-  .bus-arrival {
-    font-size: calc(var(--font-md) * 1.1);
-    padding: 0.6em 0.9em;
-  }
-  .bus-line {
-    font-size: calc(var(--font-md));
-    padding: 8px 12px;
-  }
-  .bus-destination {
-    font-size: calc(var(--font-md) * 1.1);
-    padding: 10px 14px;
   }
 }
 .kantine-view {
